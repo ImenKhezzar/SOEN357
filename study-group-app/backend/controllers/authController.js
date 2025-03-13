@@ -28,13 +28,13 @@ const handleLogin = async (req, res) => {
         } else {
             // Add JWT tokens
             const accessToken = jwt.sign(
-                { "username": result.recordset[0].username },
+                { "username": result.recordset[0].username, "id": result.recordset[0].id },
                 process.env.ACCESS_TOKEN_SECRET,
                 { expiresIn: '30s' } // TODO: might need to increase later to 5m
             );
 
             const refreshToken = jwt.sign(
-                { "username": result.recordset[0].username },
+                { "username": result.recordset[0].username, "id": result.recordset[0].id },
                 process.env.REFRESH_TOKEN_SECRET,
                 { expiresIn: '1d' }
             );
@@ -45,7 +45,7 @@ const handleLogin = async (req, res) => {
                 .input('refreshToken', sql.VarChar, refreshToken)
                 .query('UPDATE Users SET refreshToken = @refreshToken WHERE username = @username');
 
-            res.cookie('jwt', refreshToken, { httpOnly: true, maxAge: 24 * 60 * 60 * 1000, sameSite: 'None', secure: true}); // 1 day, http cookie aren't available to js, making it more secure
+            res.cookie('jwt', refreshToken, { httpOnly: true, maxAge: 24 * 60 * 60 * 1000, sameSite: 'None'}); // 1 day, http cookie aren't available to js, making it more secure
             res.status(200).json({ accessToken }); // Send the access token to the client with a 30s lifetime
         }
     } catch (err) {

@@ -1,5 +1,6 @@
 const sql = require('mssql');
 const bcrypt = require('bcrypt');
+const crypto = require('crypto');
 const pool = require('../db'); // Import the database connection pool
 
 const handleNewUser = async (req, res) => {
@@ -21,14 +22,18 @@ const handleNewUser = async (req, res) => {
         // Encrypt password using bcrypt
         const hashedPassword = await bcrypt.hash(password, 10);
 
+        // Generate a random integer for the user ID
+        const userId = crypto.randomInt(1, 1000000);
+
         // Add new user to the database
         await pool.request()
+            .input('id', sql.Int, userId)
             .input('username', sql.VarChar, username)
             .input('password', sql.VarChar, hashedPassword)
             .input('name', sql.VarChar, name)
             .input('email', sql.VarChar, email)
-            .query('INSERT INTO Users (username, password, name, email) VALUES (@username, @password, @name, @email)');
-        res.status(201).json({ message: `User  ${username} registered successfully.` });
+            .query('INSERT INTO Users (id, username, password, name, email) VALUES (@id, @username, @password, @name, @email)');
+        res.status(201).json({ message: `User ${username} registered successfully.` });
     } catch (err) {
         res.status(500).json({ message: err.message });
     }

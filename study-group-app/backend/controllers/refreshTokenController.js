@@ -29,8 +29,9 @@ const handleRefreshToken = async (req, res) => {
             if (err || decoded.username !== result.recordset[0].username) {
                 return res.sendStatus(403); // Forbidden
             }
+
             const accessToken = jwt.sign(
-                { "username": decoded.username },
+                { "username": decoded.username, "id": decoded.id },
                 process.env.ACCESS_TOKEN_SECRET,
                 { expiresIn: '30s' } // TODO: might need to increase later to 5m
             );

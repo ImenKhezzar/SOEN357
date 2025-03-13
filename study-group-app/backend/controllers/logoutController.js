@@ -19,7 +19,7 @@ const handleLogout = async (req, res) => {
 
             console.log(result);
         if (result.recordset === undefined) {
-            res.clearCookie('jwt', {httpOnly: true, sameSite: 'None', secure: true});
+            res.clearCookie('jwt', {httpOnly: true, sameSite: 'None'});
             return res.sendStatus(204); // No content
         }
 
@@ -28,7 +28,7 @@ const handleLogout = async (req, res) => {
             .input('refreshToken', sql.VarChar, refreshToken)
             .query('UPDATE Users SET refreshToken = NULL WHERE refreshToken = @refreshToken');
 
-        res.clearCookie('jwt', {httpOnly: true, sameSite: 'None', secure: true});
+        res.clearCookie('jwt', {httpOnly: true, sameSite: 'None'});
         res.sendStatus(204); // No content
 
     } catch (err) {
