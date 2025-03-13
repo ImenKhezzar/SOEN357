@@ -10,5 +10,6 @@ module.exports = (app) => {
     // basically you need to be authenticated to access these endpoints 
     app.use(verifyJWT);
     app.use('/users', require('./users'));
-    app.use('/study-rooms', require('./studyRooms'));
+    app.use('/study-rooms', require('./studyRooms'))
+    app.use('/tasks', require('./tasks'));
 };
