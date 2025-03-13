@@ -11,4 +11,4 @@ app.get('/', (req, res) => {
 
 routes(app);
 
-app.listen(PORT, () => {console.log(`listening on port ${PORT}`);
+app.listen(PORT, () => {console.log(`listening on port ${PORT}`)});

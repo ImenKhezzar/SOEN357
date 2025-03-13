@@ -1,5 +1,5 @@
-import sql from 'mssql';
-import dotenv from 'dotenv';
+const sql = require('mssql');
+const dotenv = require('dotenv');
 
 dotenv.config();
 
@@ -11,6 +11,7 @@ const dbConfig = {
   password: process.env.DB_PASSWORD,
   port: 1433,
   options: {
+    encyprt: true,
     trustedConnection: true,
     trustServerCertificate: true,
   },
@@ -27,4 +28,4 @@ pool.connect()
     console.error('Error connecting to the database:', err);
   });
 
-export default pool;
+module.exports = pool;

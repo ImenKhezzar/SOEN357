@@ -1,3 +1,4 @@
 module.exports = (app) => {
-    app.use('/user', require('./users'));
+    app.use('/register', require('./register'));
+    app.use('/auth', require('./auth'));
 };
