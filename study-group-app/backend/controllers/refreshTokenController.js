@@ -7,14 +7,13 @@ require('dotenv').config();
 const handleRefreshToken = async (req, res) => {
     const cookies = req.cookies
     if (!cookies?.jwt) {
-        return res.status(401);
+        return res.sendStatus(401);
     }
 
     console.log(cookies.jwt);
     const refreshToken = cookies.jwt;
 
     try {
-        // Check if user exists
         const result =  await pool.request()
             .input('refreshToken', sql.VarChar, refreshToken)
             .query('SELECT username FROM Users WHERE refreshToken = @refreshToken');

@@ -26,6 +26,7 @@ const PORT = process.env.BACKEND_PORT || 3000;
 //custom middleware
 app.use((req, res, next) => {
     console.log(`${req.method} request for ${req.path}`);
+    res.header('Access-Control-Allow-Origin', true); // for all origins cuz im too lazy to figure out cors allowed origins... 💀
     next();
 });
 
