@@ -4,8 +4,8 @@ const crypto = require('crypto');
 const pool = require('../db'); // Import the database connection pool
 
 const handleNewUser = async (req, res) => {
-    const { username, password, name, email } = req.body;
-    if (!username || !password || !name || !email) {
+    const { username, password, name, email, age } = req.body;
+    if (!username || !password || !name || !email || !age) {
         return res.status(400).json({ message: 'All the fields are required.' });
     }
 
@@ -32,7 +32,8 @@ const handleNewUser = async (req, res) => {
             .input('password', sql.VarChar, hashedPassword)
             .input('name', sql.VarChar, name)
             .input('email', sql.VarChar, email)
-            .query('INSERT INTO Users (id, username, password, name, email) VALUES (@id, @username, @password, @name, @email)');
+            .input('age', sql.VarChar, age)
+            .query('INSERT INTO Users (id, username, password, name, email, age) VALUES (@id, @username, @password, @name, @email, @age)');
         res.status(201).json({ message: `User ${username} registered successfully.` });
     } catch (err) {
         res.status(500).json({ message: err.message });
