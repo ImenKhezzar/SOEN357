@@ -1,5 +1,5 @@
 //This is the Auth token, you will use it to generate a meeting and connect to it
-export const authToken: string = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlrZXkiOiI1MjUwZWNkMC1kZmU1LTQ4YjQtODQzNC05ZWM0MGQwMmQ1YzUiLCJwZXJtaXNzaW9ucyI6WyJhbGxvd19qb2luIl0sImlhdCI6MTc0MTkyMTUwNiwiZXhwIjoxNzQyNTI2MzA2fQ.6Q4aFHB_EoVgindhsy2wo6lr7dOXExLOLBsRKXezE7o";
+export const authToken: string = import.meta.env.VITE_VIDEO_SDK_TOKEN;
 
 // API call to create a meeting
 export const createMeeting = async ({ token }: { token: string }) => {
