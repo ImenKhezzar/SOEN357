@@ -1,6 +1,18 @@
 import { useMeeting } from "@videosdk.live/react-sdk";
 import { useEffect } from "react";
-import ParticipantView from "./ParticipantView"; 
+import ParticipantView from "./ParticipantView";
+import WhiteBoard from "./WhiteBoard";
+
+function Controls() {
+  const { toggleMic, toggleWebcam, toggleScreenShare } = useMeeting();
+  return (
+    <div>
+      <button onClick={() => toggleMic()}>toggleMic</button>
+      <button onClick={() => toggleWebcam()}>toggleWebcam</button>
+      <button onClick={() => toggleScreenShare()}> toggleScreenShare</button>
+    </div>
+  );
+}
 
 const MeetingView = () => {
   const { join, participants, localMicOn, unmuteMic, muteMic } = useMeeting({
@@ -10,16 +22,15 @@ const MeetingView = () => {
   });
 
   useEffect(() => {
-    join(); 
+    join();
   }, []);
 
   return (
     <div>
       <h3>Meeting</h3>
-      <p>Local Mic is {localMicOn ? "On" : "Off"}</p>
 
-      <button onClick={muteMic}>Mute Mic</button>
-      <button onClick={unmuteMic}>Unmute Mic</button>
+      <Controls />
+      <WhiteBoard />
 
       <h4>Participants:</h4>
       <div style={{ display: "flex", flexWrap: "wrap" }}>

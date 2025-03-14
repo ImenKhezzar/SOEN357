@@ -1,13 +1,13 @@
 body {
-  background-color: #F1F0F5;
+  background-color: #f1f0f5;
 }
-.white-box{
+.white-box {
   background-color: white;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
 }
-.input-label{
+.input-label {
   text-align: left;
 }
 
@@ -52,4 +52,43 @@ body {
 
 .read-the-docs {
   color: #888;
+}
+
+.participant-view {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  width: 220px;
+  color: black;
+}
+
+.participant-view p {
+  margin: 5px 0;
+  color: black;
+}
+
+.participant-view-video {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  transform: scaleX(-1); /* Mirror effect */
+}
+
+.screen-share-container {
+  margin-top: 10px;
+  padding: 5px;
+  border: 2px dashed #4caf50;
+  border-radius: 8px;
+  background-color: #eef;
+}
+
+.screen-share-video {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
 }

@@ -50,6 +50,7 @@ function App() {
       }}
       token={authToken}
     >
+       <p><strong>Meeting ID:</strong> {meetingId}</p>
       <MeetingView />
       <button onClick={onMeetingLeave}>Leave Meeting</button>
     </MeetingProvider>
