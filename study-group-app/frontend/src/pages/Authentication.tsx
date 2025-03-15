@@ -7,12 +7,13 @@ const Authentication: React.FC = () => {
 
     return (
         <div className="authentication-container">
-            <div className="white-box" style={{ width: '70vw', height: '50vh' }}>
-            <div className="toggle-buttons">
-                <button onClick={() => setIsSignIn(true)} disabled={isSignIn}>
+            <h1 className="authentication-header">Welcome to LUMORA</h1>
+            <div className="white-box" style={{ width: '70vw', paddingTop: '5%', paddingBottom: '10%', maxWidth: '1280px' }}>
+            <div className="toggle">
+                <button onClick={() => setIsSignIn(true)} disabled={isSignIn} className='toggle-button'>
                     Sign In
                 </button>
-                <button onClick={() => setIsSignIn(false)} disabled={!isSignIn}>
+                <button onClick={() => setIsSignIn(false)} disabled={!isSignIn} className='toggle-button'>
                     Sign Up
                 </button>
             </div>
