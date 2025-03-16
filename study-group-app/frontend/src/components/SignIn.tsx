@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import axios from '../api/axios';
+import useAuth from '../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -9,15 +10,21 @@ const SignIn = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
+    const auth = useAuth();
+    if (!auth) {
+        throw new Error('useAuth must be used within an AuthProvider');
+    }
+    const { setAuth } = auth;
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
             setError('');
-            const response = await axios.post('http://localhost:3000/auth', { username, password });
-            // localStorage.setItem('token', response.data.accessToken);
+            const response = await axios.post('/auth', { username, password }, { withCredentials: true });
             console.log(response);
             if (response.status === 200){
+                const accessToken = response.data.accessToken;
+                setAuth({username, accessToken});
                 navigate('/homepage');
             }
         } catch (err) {

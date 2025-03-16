@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import axios from '../api/axios';
 import { useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -16,7 +16,7 @@ const SignUp = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:3000/register', { username, password, name, email, age });
+            const response = await axios.post('/register', { username, password, name, email, age });
             console.log(response);
             // TODO: either reload and ask user to auth or do auth here and navigate to hompage
             if(response.status === 201){
