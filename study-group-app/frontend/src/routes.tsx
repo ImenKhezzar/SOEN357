@@ -11,7 +11,7 @@ const AppRoutes: React.FC = () => {
             <Route path="/" element={<Authentication />} />
             <Route path="/auth" element={<Authentication />} />
 
-            {/* Add path that requires authetication to be accessed */}
+            {/* Add path that requires authetication to be access */}
             <Route element={<RequireAuth />}>
             <Route path="/homepage" element={<HomePage />} />
             </Route>
