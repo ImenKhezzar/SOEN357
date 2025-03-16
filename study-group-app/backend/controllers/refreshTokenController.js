@@ -7,10 +7,10 @@ require('dotenv').config();
 const handleRefreshToken = async (req, res) => {
     const cookies = req.cookies
     if (!cookies?.jwt) {
+        console.log('No refresh token provided in cookies');
         return res.sendStatus(401);
     }
 
-    console.log(cookies.jwt);
     const refreshToken = cookies.jwt;
 
     try {
@@ -18,7 +18,6 @@ const handleRefreshToken = async (req, res) => {
             .input('refreshToken', sql.VarChar, refreshToken)
             .query('SELECT username FROM Users WHERE refreshToken = @refreshToken');
 
-            console.log(result);
         if (result.recordset === undefined) {
             return res.sendStatus(403); // Forbidden
         }
@@ -33,7 +32,7 @@ const handleRefreshToken = async (req, res) => {
             const accessToken = jwt.sign(
                 { "username": decoded.username, "id": decoded.id },
                 process.env.ACCESS_TOKEN_SECRET,
-                { expiresIn: '30s' } // TODO: might need to increase later to 5m
+                { expiresIn: '30s' } // might need to increase later
             );
 
             res.status(200).json({ accessToken }); // Send the access token to the client with a 30s lifetime
