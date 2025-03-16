@@ -10,7 +10,6 @@ const PORT = process.env.BACKEND_PORT || 3000;
 const allowedOrigins = ['http://localhost:3000', 'http://localhost:5173'];
 const corsOptions = {
     origin: function (origin, callback) {
-        console.log('Origin:', origin); // Debugging origin
         if (!origin || allowedOrigins.includes(origin)) {
             callback(null, true);
         } else {

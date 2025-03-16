@@ -35,10 +35,6 @@ const createStudyRoom = async (req, res) => {
     const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
     const userId = decoded.id;
 
-   
-
-    console.log(userId);
-
     if (!name || !type || !userId) {
         return res.status(400).json({ message: 'Name, type, and userId are required' });
     }

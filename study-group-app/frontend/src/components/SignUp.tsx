@@ -17,8 +17,7 @@ const SignUp = () => {
         e.preventDefault();
         try {
             const response = await axios.post('/register', { username, password, name, email, age });
-            console.log(response);
-            // TODO: either reload and ask user to auth or do auth here and navigate to hompage
+
             if(response.status === 201){
                 window.location.reload();
             }

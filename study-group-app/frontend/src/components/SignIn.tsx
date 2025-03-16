@@ -21,7 +21,6 @@ const SignIn = () => {
         try {
             setError('');
             const response = await axios.post('/auth', { username, password }, { withCredentials: true });
-            console.log(response);
             if (response.status === 200){
                 const accessToken = response.data.accessToken;
                 setAuth({username, accessToken});
