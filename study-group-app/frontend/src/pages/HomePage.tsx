@@ -1,6 +1,7 @@
 import React from 'react';
-import Logout from '../components/Logout';
-import TodoList from '../components/ToDoList';
+import Logout from '../components/Authentication/Logout';
+import TodoList from '../components/TodoList/TodoList';
+import MusicPlayerContainer from '../components/Music/MusicPlayer';
 import '../App.css'; 
 
 const HomePage = () => {
@@ -9,6 +10,7 @@ const HomePage = () => {
         <div className="homepage-container">
             <Logout/>
             <TodoList />
+            <MusicPlayerContainer />
         </div>
     );
 };

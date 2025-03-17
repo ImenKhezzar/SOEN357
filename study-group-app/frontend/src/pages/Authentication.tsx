@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import SignIn from '../components/SignIn';
-import SignUp from '../components/SignUp';
+import SignIn from '../components/Authentication/SignIn';
+import SignUp from '../components/Authentication/SignUp';
 import '../App.css';
 const Authentication: React.FC = () => {
     const [isSignIn, setIsSignIn] = useState(true);
