@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import GroupsIcon from "@mui/icons-material/Groups";
+
 import PersonIcon from "@mui/icons-material/Person";
 import { authToken, createMeeting } from "../API";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import { JoinScreen } from "./JoinScreen";
 
 function StartStudying() {
   const [meetingId, setMeetingId] = useState<string | null>(null);
@@ -14,16 +14,20 @@ function StartStudying() {
   const navigate = useNavigate();
 
   if (!authContext) {
-    throw new Error('useAuth must be used within an AuthProvider');
+    throw new Error("useAuth must be used within an AuthProvider");
   }
   const { auth } = authContext;
   console.log(auth.username);
 
   const getMeetingAndToken = async (id?: string) => {
-    const meetingId =
+    if (meetingId) {
+      console.log("Already in a meeting, not joining again.");
+      return;
+    }
+    const newMeetingId =
       id == null ? await createMeeting({ token: authToken }) : id;
-    setMeetingId(meetingId);
-    navigate(`/room/${meetingId}`);
+    setMeetingId(newMeetingId);
+    navigate(`/room/${newMeetingId}`);
   };
 
   return (
@@ -52,39 +56,7 @@ function StartStudying() {
           >
             {auth.username}'s Study Room
           </Button>
-          <Stack
-            spacing={2}
-            direction="row"
-            sx={{ width: "100%", justifyContent: "space-between" }}
-          >
-            <Button
-              variant="outlined"
-              startIcon={<AddCircleOutlineIcon />}
-              sx={{
-                textTransform: "none",
-                backgroundColor: "#fff",
-                color: "#374151",
-                border: "1px solid #374151",
-                width: "50%",
-              }}
-              onClick={() => getMeetingAndToken()}
-            >
-              Create Room
-            </Button>
-            <Button
-              variant="outlined"
-              startIcon={<GroupsIcon />}
-              sx={{
-                textTransform: "none",
-                backgroundColor: "#fff",
-                color: "#374151",
-                border: "1px solid #374151",
-                width: "50%",
-              }}
-            >
-              Join Room{" "}
-            </Button>
-          </Stack>
+          <JoinScreen getMeetingAndToken={getMeetingAndToken} />
         </Stack>
       </div>{" "}
     </div>

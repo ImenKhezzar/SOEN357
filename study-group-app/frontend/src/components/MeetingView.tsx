@@ -15,8 +15,17 @@ const MeetingView = () => {
   });
 
   useEffect(() => {
-    join();
-  }, [join]);
+    if (participants.size === 0) {
+      console.log("Joining meeting...");
+      join();
+    } else {
+      console.log("Already joined, skipping...");
+    }
+  }, [join, participants.size]);
+  
+  useEffect(() => {
+    console.log("Current participants:", Array.from(participants.keys()));
+  }, [participants]);
 
   return (
     <div>
