@@ -27,9 +27,11 @@ const Logout = () => {
     };
 
     return (
+        <div className="logout-button">
             <Button variant="contained" onClick={handleLogout}>
                 Logout
             </Button>
+        </div>
     );
 };
 

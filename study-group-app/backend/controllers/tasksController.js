@@ -1,6 +1,7 @@
 const sql = require('mssql');
 const pool = require('../db');
 const jwt = require('jsonwebtoken');
+const crypto = require('crypto');
 
 // Get all tasks for a specific user
 const getUserTasks = async (req, res) => {
@@ -12,7 +13,7 @@ const getUserTasks = async (req, res) => {
         const result = await pool.request()
             .input('userId', sql.Int, userId)
             .query('SELECT * FROM Tasks WHERE userId = @userId');
-        res.status(200).json(result.recordset);
+        res.status(200).json({ tasks: result.recordset });
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
@@ -41,19 +42,21 @@ const createTask = async (req, res) => {
     const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
     const userId = decoded.id;
 
+    // Generate a random integer for the task ID
+    const id = crypto.randomInt(1, 1000000);
+
     if (!name) {
         return res.status(400).json({ message: 'A name is  required to create a task' });
     }
 
     try {
-        const result = await pool.request()
+        await pool.request()
             .input('name', sql.VarChar, name)
             .input('status', sql.VarChar, status)
             .input('userId', sql.Int, userId)
-            .query('INSERT INTO Tasks (name, status, userId) OUTPUT INSERTED.id VALUES (@name, @status, @userId)');
-
-        const taskId = result.recordset[0].id;
-        res.status(201).json({ message: `Task ${name} created successfully`, taskId });
+            .input('id', sql.Int, id)
+            .query('INSERT INTO Tasks (name, status, userId, id) VALUES (@name, @status, @userId, @id)');
+        res.status(201).json({ message: `Task ${name} created successfully`, id });
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
