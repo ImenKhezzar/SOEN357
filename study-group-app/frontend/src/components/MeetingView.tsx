@@ -2,17 +2,8 @@ import { useMeeting } from "@videosdk.live/react-sdk";
 import { useEffect } from "react";
 import ParticipantView from "./ParticipantView";
 import WhiteBoard from "./WhiteBoard";
+import Controls from "./Controls";
 
-function Controls() {
-  const { toggleMic, toggleWebcam, toggleScreenShare } = useMeeting();
-  return (
-    <div>
-      <button onClick={() => toggleMic()}>toggleMic</button>
-      <button onClick={() => toggleWebcam()}>toggleWebcam</button>
-      <button onClick={() => toggleScreenShare()}> toggleScreenShare</button>
-    </div>
-  );
-}
 
 const MeetingView = () => {
   const { join, participants, localMicOn, unmuteMic, muteMic } = useMeeting({

@@ -4,28 +4,7 @@ import { MeetingProvider } from "@videosdk.live/react-sdk";
 import { authToken, createMeeting } from "./API";
 import MeetingView from "./components/MeetingView"; 
 
-function JoinScreen({
-  getMeetingAndToken,
-}: {
-  getMeetingAndToken: (meeting?: string) => void;
-}) {
-  const [meetingIdInput, setMeetingIdInput] = useState("");
-
-  return (
-    <div>
-      <button onClick={() => getMeetingAndToken()}>Create Meeting</button>
-      <input
-        type="text"
-        placeholder="Enter Meeting ID"
-        value={meetingIdInput}
-        onChange={(e) => setMeetingIdInput(e.target.value)}
-      />
-      <button onClick={() => getMeetingAndToken(meetingIdInput)}>
-        Join Meeting
-      </button>
-    </div>
-  );
-}
+ 
 
 function App() {
   const [meetingId, setMeetingId] = useState<string | null>(null);
