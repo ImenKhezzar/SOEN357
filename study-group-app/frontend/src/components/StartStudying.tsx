@@ -6,10 +6,18 @@ import GroupsIcon from "@mui/icons-material/Groups";
 import PersonIcon from "@mui/icons-material/Person";
 import { authToken, createMeeting } from "../API";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 function StartStudying() {
   const [meetingId, setMeetingId] = useState<string | null>(null);
+  const authContext = useAuth();
   const navigate = useNavigate();
+
+  if (!authContext) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  const { auth } = authContext;
+  console.log(auth.username);
 
   const getMeetingAndToken = async (id?: string) => {
     const meetingId =
@@ -42,7 +50,7 @@ function StartStudying() {
               border: "2px solid #9387B4",
             }}
           >
-            Name's Study Room
+            {auth.username}'s Study Room
           </Button>
           <Stack
             spacing={2}
