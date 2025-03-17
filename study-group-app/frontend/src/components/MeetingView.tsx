@@ -3,16 +3,19 @@ import { useEffect } from "react";
 import ParticipantView from "./ParticipantView";
 import WhiteBoard from "./WhiteBoard";
 import Controls from "./Controls";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { Button } from "@mui/material";
 
 const MeetingView = () => {
   const { roomId } = useParams();
+  const navigate = useNavigate();
 
-  const { join, participants, localMicOn, unmuteMic, muteMic } = useMeeting({
-    onParticipantJoined: (participant) => {
-      console.log("Participant Joined:", participant);
-    },
-  });
+  const { join, leave, end, participants, localMicOn, unmuteMic, muteMic } =
+    useMeeting({
+      onParticipantJoined: (participant) => {
+        console.log("Participant Joined:", participant);
+      },
+    });
 
   useEffect(() => {
     if (participants.size === 0) {
@@ -22,10 +25,20 @@ const MeetingView = () => {
       console.log("Already joined, skipping...");
     }
   }, [join, participants.size]);
-  
+
   useEffect(() => {
     console.log("Current participants:", Array.from(participants.keys()));
   }, [participants]);
+
+  const handleLeave = () => {
+    leave();
+    navigate("/homepage");
+  };
+
+  const handleEndMeeting = () => {
+    end();
+    navigate("/homepage");
+  };
 
   return (
     <div>
@@ -40,6 +53,14 @@ const MeetingView = () => {
           <ParticipantView key={participantId} participantId={participantId} />
         ))}
       </div>
+
+      <Button variant="contained" onClick={handleLeave}>
+        Leave Meeting
+      </Button>
+
+      <Button variant="contained" onClick={handleEndMeeting}>
+        End Meeting
+      </Button>
     </div>
   );
 };
