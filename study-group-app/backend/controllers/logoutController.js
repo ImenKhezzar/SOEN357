@@ -17,9 +17,8 @@ const handleLogout = async (req, res) => {
             .input('refreshToken', sql.VarChar, refreshToken)
             .query('SELECT username FROM Users WHERE refreshToken = @refreshToken');
 
-            console.log(result);
         if (result.recordset === undefined) {
-            res.clearCookie('jwt', {httpOnly: true, sameSite: 'None'});
+            res.clearCookie('jwt', {httpOnly: true, sameSite: 'None', secure: true});
             return res.sendStatus(204); // No content
         }
 
@@ -28,7 +27,7 @@ const handleLogout = async (req, res) => {
             .input('refreshToken', sql.VarChar, refreshToken)
             .query('UPDATE Users SET refreshToken = NULL WHERE refreshToken = @refreshToken');
 
-        res.clearCookie('jwt', {httpOnly: true, sameSite: 'None'});
+        res.clearCookie('jwt', {httpOnly: true, sameSite: 'None', secure: true});
         res.sendStatus(204); // No content
 
     } catch (err) {
