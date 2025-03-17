@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import RequireAuth from './components/RequireAuth';
 import Authentication from './pages/Authentication';
 import HomePage from './pages/HomePage';
+import MeetingRoom from './components/MeetingRoom';
 
 
 const AppRoutes: React.FC = () => {
@@ -14,6 +15,7 @@ const AppRoutes: React.FC = () => {
             {/* Add path that requires authetication to be access */}
             <Route element={<RequireAuth />}>
             <Route path="/homepage" element={<HomePage />} />
+            <Route path="/room/:roomId" element={<MeetingRoom/>} />
             </Route>
 
             <Route path="*" element={<h1>Not Found</h1>} />

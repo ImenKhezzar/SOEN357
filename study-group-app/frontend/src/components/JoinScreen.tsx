@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function JoinScreen({
+export function JoinScreen({
   getMeetingAndToken,
 }: {
   getMeetingAndToken: (meeting?: string) => void;

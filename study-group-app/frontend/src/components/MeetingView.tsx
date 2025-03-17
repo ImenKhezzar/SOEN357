@@ -3,9 +3,11 @@ import { useEffect } from "react";
 import ParticipantView from "./ParticipantView";
 import WhiteBoard from "./WhiteBoard";
 import Controls from "./Controls";
-
+import { useParams } from "react-router-dom";
 
 const MeetingView = () => {
+  const { roomId } = useParams();
+
   const { join, participants, localMicOn, unmuteMic, muteMic } = useMeeting({
     onParticipantJoined: (participant) => {
       console.log("Participant Joined:", participant);
@@ -14,11 +16,11 @@ const MeetingView = () => {
 
   useEffect(() => {
     join();
-  }, []);
+  }, [join]);
 
   return (
     <div>
-      <h3>Meeting</h3>
+      <h3>Meeting: {roomId}</h3>
 
       <Controls />
       <WhiteBoard />
