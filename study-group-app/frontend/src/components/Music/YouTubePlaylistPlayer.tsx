@@ -22,6 +22,7 @@ interface YouTubePlaylistPlayerProps {
 
 const YouTubePlaylistPlayer: React.FC<YouTubePlaylistPlayerProps> = ({ playlistId, showVideo }) => {
   const playerRef = useRef<HTMLDivElement>(null);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const [player, setPlayer] = useState<any>(null);
   const [currentTitle, setCurrentTitle] = useState<string>("");
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
@@ -30,60 +31,79 @@ const YouTubePlaylistPlayer: React.FC<YouTubePlaylistPlayerProps> = ({ playlistI
   const [duration, setDuration] = useState<number>(0);
 
   useEffect(() => {
-    if (!playlistId) return;
-
     const tag = document.createElement("script");
     tag.src = "https://www.youtube.com/iframe_api";
     document.body.appendChild(tag);
 
     window.onYouTubeIframeAPIReady = () => {
       if (window.YT) {
-        const newPlayer = new window.YT.Player(playerRef.current!, {
-          height: showVideo ? "360" : "0",
-          width: showVideo ? "640" : "0",
-          playerVars: {
-            listType: "playlist",
-            list: playlistId,
-            autoplay: 1,
-            controls: showVideo ? 1 : 0,
-            modestbranding: 1,
-            disablekb: showVideo ? 0 : 1,
-            showinfo: 0,
-            rel: 0,
-          },
-          events: {
-            onReady: (event: any) => {
-              setPlayer(event.target);
-              setCurrentTitle(event.target.getVideoData().title);
-              event.target.setVolume(volume);
-              setDuration(event.target.getDuration());
-            },
-            onStateChange: (event: any) => {
-              if (event.data === window.YT.PlayerState.PLAYING) {
-                setCurrentTitle(event.target.getVideoData().title);
-                setIsPlaying(true);
-                setDuration(event.target.getDuration());
-                const interval = setInterval(() => {
-                  setCurrentTime(event.target.getCurrentTime());
-                }, 1000);
-                return () => clearInterval(interval);
-              } else if (event.data === window.YT.PlayerState.PAUSED || event.data === window.YT.PlayerState.ENDED) {
-                setIsPlaying(false);
-              }
-            },
-          },
-        });
+        createPlayer();
       }
     };
 
     return () => {
-      if (playerRef.current && window.YT) {
-        const playerInstance = new window.YT.Player(playerRef.current);
-        playerInstance.destroy();
+      if (player) {
+        player.destroy();
+      }
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
       }
       document.body.removeChild(tag);
     };
-  }, [playlistId, showVideo]);
+  }, []);
+
+  useEffect(() => {
+    if (player) {
+      player.destroy();
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+      createPlayer();
+    }
+  }, [playlistId]);
+
+  const createPlayer = () => {
+    const newPlayer = new window.YT.Player(playerRef.current!, {
+      height: showVideo ? "360" : "0",
+      width: showVideo ? "640" : "0",
+      playerVars: {
+        listType: "playlist",
+        list: playlistId,
+        autoplay: 1,
+        controls: showVideo ? 1 : 0,
+        modestbranding: 1,
+        disablekb: showVideo ? 0 : 1,
+        showinfo: 0,
+        rel: 0,
+      },
+      events: {
+        onReady: (event: any) => {
+          setPlayer(event.target);
+          setCurrentTitle(event.target.getVideoData().title);
+          event.target.setVolume(volume);
+          setDuration(event.target.getDuration());
+        },
+        onStateChange: (event: any) => {
+          if (event.data === window.YT.PlayerState.PLAYING) {
+            setCurrentTitle(event.target.getVideoData().title);
+            setIsPlaying(true);
+            setDuration(event.target.getDuration());
+            if (intervalRef.current) {
+              clearInterval(intervalRef.current);
+            }
+            intervalRef.current = setInterval(() => {
+              setCurrentTime(event.target.getCurrentTime());
+            }, 1000);
+          } else if (event.data === window.YT.PlayerState.PAUSED || event.data === window.YT.PlayerState.ENDED) {
+            setIsPlaying(false);
+            if (intervalRef.current) {
+              clearInterval(intervalRef.current);
+            }
+          }
+        },
+      },
+    });
+  };
 
   const handlePlayPause = () => {
     if (player) {
