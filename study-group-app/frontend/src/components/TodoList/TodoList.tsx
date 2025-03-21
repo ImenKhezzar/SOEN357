@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import Task from './Task';
-import useAxiosPrivate from '../hooks/useAxiosPrivate';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 
 interface TaskType {
     id: number;
@@ -54,7 +54,7 @@ const TodoList: React.FC = () => {
     };
 
     const updateTaskName = async (id: number, name: string) => {
-        if (!name.trim()) return; // Don't update if the name is empty
+        if (!name.trim()) return;
         try {
             await axiosPrivate.put(`/tasks/${id}/name`, { name });
             setTasks(tasks.map(task =>
@@ -76,7 +76,7 @@ const TodoList: React.FC = () => {
 
     return (
         <div className='todo-list-container'>
-            <div className="white-box" style={{ width: '25%', maxWidth: '30%', maxHeight: '80vw', margin: 'auto' }}>
+            <div className="white-box" style={{ width: '25%', maxWidth: '30vw', maxHeight: '40vw', margin: 'auto' }}>
                 <h2>My Tasks</h2>
                 <div className="add-task-container">
                 </div>
@@ -87,8 +87,8 @@ const TodoList: React.FC = () => {
                         <Task key={task.id} task={task} updateTaskName={updateTaskName} updateTaskStatus={updateTaskStatus} deleteTask={deleteTask} />
                     ))
                 )}
-                <div className="add-task-container">
-                    <Button variant="text" onClick={addTask} className='add-task-button'>+ Add Task</Button>
+                <div className="add-list-container">
+                    <Button variant="text" onClick={addTask} className='add-list-button'>+ Add Task</Button>
                 </div>
             </div>
         </div>

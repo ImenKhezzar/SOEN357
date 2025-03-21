@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import axios from '../api/axios';
-import useAuth from '../hooks/useAuth';
+import axios from '../../api/axios';
+import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';

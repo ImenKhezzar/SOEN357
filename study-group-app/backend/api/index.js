@@ -12,4 +12,5 @@ module.exports = (app) => {
     app.use('/users', require('./users'));
     app.use('/study-rooms', require('./studyRooms'))
     app.use('/tasks', require('./tasks'));
+    app.use('/playlists', require('./playlists'));
 };
