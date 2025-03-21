@@ -32,7 +32,7 @@ const Task: React.FC<TaskProps> = ({ task, updateTaskName, updateTaskStatus, del
     };
 
     return (
-        <div className="task">
+        <div className="list">
             <input
                 type="checkbox"
                 checked={task.completed}

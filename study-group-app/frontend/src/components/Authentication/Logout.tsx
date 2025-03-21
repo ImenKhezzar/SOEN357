@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
-import useAxiosPrivate from '../hooks/useAxiosPrivate';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import Button from '@mui/material/Button';
-import useAuth from "../hooks/useAuth";
-import '../App.css'; 
+import useAuth from "../../hooks/useAuth";
+import '../../App.css'; 
 
 const Logout = () => {
     const navigate = useNavigate();
