@@ -41,7 +41,7 @@ const MeetingView = () => {
   };
 
   return (
-    <div>
+    <div className="meeting-room">
       <h3>Meeting: {roomId}</h3>
 
       <Controls />
