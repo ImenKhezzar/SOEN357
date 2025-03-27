@@ -45,8 +45,6 @@ const ParticipantView = ({ participantId }: { participantId: string }) => {
 
   return (
     <div className="participant-view">
-      <p>Participant: {displayName}</p>
-      <p>Mic Status: {micOn ? "On" : "Off"}</p>
       {webcamOn ? (
         <video
           className="participant-view-video"
@@ -57,7 +55,9 @@ const ParticipantView = ({ participantId }: { participantId: string }) => {
           height="150"
         />
       ) : (
-        <p>Webcam Off</p>
+        <div className="participant-placeholder">
+        <p>{displayName}</p>
+      </div>
       )}
 
       {screenShareOn ? (
