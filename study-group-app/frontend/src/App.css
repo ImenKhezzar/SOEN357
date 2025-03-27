@@ -70,6 +70,14 @@ button.submit-button {
 
 .authentication-header {
   font-family: "Outfit", sans-serif;
+  color: black;
+}
+
+.authentication-logo {
+  width: 300px;
+  height: auto;
+  vertical-align: middle; 
+  margin-bottom: -5px;
 }
 
 .logout-button {
@@ -179,6 +187,6 @@ button.add-task-button {
   left: 1em;
 }
 
-.meeting-room{
+.meeting-room {
   color: black;
 }
