@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import SignIn from "../components/SignIn";
-import SignUp from "../components/SignUp";
-import "../App.css";
+import React, { useState } from 'react';
+import SignIn from '../components/Authentication/SignIn';
+import SignUp from '../components/Authentication/SignUp';
+import '../App.css';
 import logo from '../assets/image.png';
 
 const Authentication: React.FC = () => {

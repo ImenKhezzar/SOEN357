@@ -93,7 +93,7 @@ button.submit-button {
   width: 100%;
   position: absolute;
   left: 20%;
-  top: 20%;
+  top: 10%;
 }
 
 .todo-list {
@@ -102,7 +102,7 @@ button.submit-button {
   margin: 0 auto;
 }
 
-.task {
+.list {
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
@@ -116,13 +116,13 @@ button.submit-button {
   margin-right: 1rem;
 }
 
-.add-task-container {
+.add-list-container {
   display: flex;
   justify-content: flex-start;
 }
 
-button.add-task-button {
-  color: #9387b4;
+button.add-list-button{
+  color:#9387B4; 
   text-transform: none;
   font-size: 1.1rem;
 }
@@ -190,3 +190,23 @@ button.add-task-button {
 .meeting-room {
   color: black;
 }
+
+
+.playlist-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  position:absolute;
+  left: 20%;
+  top: 45%;
+}
+
+.music-player {
+  width: 100%;
+  position:absolute;
+  left: 18%;
+  top: 75%;
+}
+
+
