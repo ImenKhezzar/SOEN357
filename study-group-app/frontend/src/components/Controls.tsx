@@ -17,35 +17,35 @@ export default function Controls() {
     localWebcamOn,
     localScreenShareOn,
   } = useMeeting();
+
+
   const meeting = useMeeting();
+
   console.log(meeting);
+
   return (
     <Stack direction="row" spacing={2} sx={{ marginTop: "10px" }}>
       {/* Toggle Microphone */}
       <Button
         variant="contained"
         startIcon={localMicOn ? <MicIcon /> : <MicOffIcon />}
-        onClick={toggleMic}
+        onClick={() => toggleMic()}
       />
 
       {/* Toggle Webcam */}
       <Button
         variant="contained"
         startIcon={localWebcamOn ? <PhotoCameraIcon /> : <NoPhotographyIcon />}
-        onClick={toggleWebcam}
+        onClick={() => toggleWebcam()}
       />
 
-      {/* Share screen */}
-
-      {/* <Button
+      <Button
         variant="contained"
         startIcon={
           localScreenShareOn ? <CancelPresentationIcon /> : <PresentToAllIcon />
         }
-        onClick={toggleScreenShare}
-      /> */}
-
-      <Button onClick={toggleScreenShare} >Share screen </Button>
+        onClick={() => toggleScreenShare()}
+      />
 
       <WhiteBoard />
     </Stack>
