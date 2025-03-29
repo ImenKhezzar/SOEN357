@@ -76,7 +76,7 @@ button.submit-button {
 .authentication-logo {
   width: 300px;
   height: auto;
-  vertical-align: middle; 
+  vertical-align: middle;
   margin-bottom: -5px;
 }
 
@@ -121,8 +121,8 @@ button.submit-button {
   justify-content: flex-start;
 }
 
-button.add-list-button{
-  color:#9387B4; 
+button.add-list-button {
+  color: #9387b4;
   text-transform: none;
   font-size: 1.1rem;
 }
@@ -148,9 +148,8 @@ button.add-list-button{
   width: 100%;
   height: auto;
   border-radius: 8px;
-  transform: scaleX(-1); 
+  transform: scaleX(-1);
 }
-
 
 .participant-placeholder {
   width: 220px;
@@ -202,22 +201,31 @@ button.add-list-button{
 
 .meeting-room {
   color: black;
+  width: 95vw;
+  height: 90vh;
 }
-
 
 .playlist-list-container {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
-  position:absolute;
+  position: absolute;
   left: 20%;
   top: 45%;
 }
 
 .music-player {
   width: 100%;
-  position:absolute;
+  position: absolute;
   left: 18%;
   top: 75%;
+}
+
+.controls {
+  position: fixed;
+  bottom: 5vh;
+  left: 50vw;
+  transform: translateX(-50%);
+  z-index: 1000;
 }

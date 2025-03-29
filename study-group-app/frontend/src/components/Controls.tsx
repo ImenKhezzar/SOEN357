@@ -7,8 +7,15 @@ import PresentToAllIcon from "@mui/icons-material/PresentToAll";
 import CancelPresentationIcon from "@mui/icons-material/CancelPresentation";
 import { Button, Stack } from "@mui/material";
 import WhiteBoard from "./WhiteBoard";
+import "../App.css";
 
-export default function Controls() {
+interface ControlsProps {
+  handleLeave: () => void;
+  handleEndMeeting: () => void;
+}
+
+
+const Controls: React.FC<ControlsProps> = ({ handleLeave, handleEndMeeting }) => {
   const {
     toggleMic,
     toggleWebcam,
@@ -17,7 +24,6 @@ export default function Controls() {
     localWebcamOn,
     localScreenShareOn,
   } = useMeeting();
-
 
   const meeting = useMeeting();
 
@@ -48,6 +54,16 @@ export default function Controls() {
       />
 
       <WhiteBoard />
+
+      <Button variant="contained" onClick={handleLeave}>
+        Leave Meeting
+      </Button>
+
+      <Button variant="contained" onClick={handleEndMeeting}>
+        End Meeting
+      </Button>
     </Stack>
   );
-}
+};
+
+export default Controls;
