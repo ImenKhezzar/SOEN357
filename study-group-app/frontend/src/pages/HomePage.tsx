@@ -21,7 +21,11 @@ const HomePage = () => {
             <div className="homepage-container">
                 <Logout />
                 <StartStudying />
-                <TodoList />
+                <div className="todo-list-container">
+                    <div className="white-box" style={{ width: '25%', maxWidth: '30vw', maxHeight: '40vw', margin: 'auto' }}> 
+                    <TodoList />
+                    </div>
+                </div>
                 <PlaylistList onPlayPlaylist={handlePlayPlaylist} /> 
                 <MusicPlayer playlistLink={currentPlaylistLink} /> 
             </div>
