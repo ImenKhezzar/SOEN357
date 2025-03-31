@@ -61,8 +61,8 @@ const PlaylistList: React.FC<PlaylistListProps> = ({ onPlayPlaylist }) => {
     };
 
     return (
-        <div className='playlist-list-container'>
-            <div className="white-box" style={{ width: '25%', maxWidth: '30vw', margin: 'auto' }}>
+        <div>
+            <div>
                 <h2>My Playlists</h2>
                 {playlists.length === 0 ? (
                     <p>No playlists available!</p>
