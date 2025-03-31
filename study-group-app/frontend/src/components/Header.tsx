@@ -1,5 +1,4 @@
-import React from "react";
-import myLogo from "../assets/image.png"; // Adjust the path if needed
+import myLogo from "../assets/image.png";
 
 export default function Header() {
   return (

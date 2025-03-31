@@ -8,11 +8,11 @@ export default function WhiteBoard() {
   return (
     <div>
       {!whiteboardUrl ? (
-        <Button startIcon={<StickyNote2Icon />} onClick={startWhiteboard} />
+        <Button variant="contained" startIcon={<StickyNote2Icon />} onClick={startWhiteboard} />
        
       ) : (
         <>
-          <Button startIcon={<StickyNote2Icon />} onClick={stopWhiteboard} />
+          <Button variant="contained" startIcon={<StickyNote2Icon />} onClick={stopWhiteboard} />
            
           <iframe src={whiteboardUrl} width="800" height="600"></iframe>
         </>

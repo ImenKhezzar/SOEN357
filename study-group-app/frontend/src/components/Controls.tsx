@@ -6,40 +6,64 @@ import NoPhotographyIcon from "@mui/icons-material/NoPhotography";
 import PresentToAllIcon from "@mui/icons-material/PresentToAll";
 import CancelPresentationIcon from "@mui/icons-material/CancelPresentation";
 import { Button, Stack } from "@mui/material";
+import WhiteBoard from "./WhiteBoard";
+import "../App.css";
 
-export default function Controls() {
+interface ControlsProps {
+  handleLeave: () => void;
+  handleEndMeeting: () => void;
+}
+
+
+const Controls: React.FC<ControlsProps> = ({ handleLeave, handleEndMeeting }) => {
   const {
     toggleMic,
     toggleWebcam,
     toggleScreenShare,
     localMicOn,
     localWebcamOn,
+    localScreenShareOn,
   } = useMeeting();
+
+  const meeting = useMeeting();
+
+  console.log(meeting);
 
   return (
     <Stack direction="row" spacing={2} sx={{ marginTop: "10px" }}>
-    {/* Toggle Microphone */}
-    <Button
-      variant="contained"
-      color={localMicOn ? "success" : "error"}
-      startIcon={localMicOn ? <MicIcon /> : <MicOffIcon />}
-      onClick={toggleMic}
-    >
-      {localMicOn ? "Mute" : "Unmute"}
-    </Button>
+      {/* Toggle Microphone */}
+      <Button
+        variant="contained"
+        startIcon={localMicOn ? <MicIcon /> : <MicOffIcon />}
+        onClick={() => toggleMic()}
+      />
 
-    {/* Toggle Webcam */}
-    <Button
-      variant="contained"
-      color={localWebcamOn ? "success" : "error"}
-      startIcon={localWebcamOn ? <PhotoCameraIcon /> : <NoPhotographyIcon />}
-      onClick={toggleWebcam}
-    >
-      {localWebcamOn ? "Turn Off Camera" : "Turn On Camera"}
-    </Button>
+      {/* Toggle Webcam */}
+      <Button
+        variant="contained"
+        startIcon={localWebcamOn ? <PhotoCameraIcon /> : <NoPhotographyIcon />}
+        onClick={() => toggleWebcam()}
+      />
 
-  
-    
+      <Button
+        variant="contained"
+        startIcon={
+          localScreenShareOn ? <CancelPresentationIcon /> : <PresentToAllIcon />
+        }
+        onClick={() => toggleScreenShare()}
+      />
+
+      <WhiteBoard />
+
+      <Button variant="contained" onClick={handleLeave}>
+        Leave Meeting
+      </Button>
+
+      <Button variant="contained" onClick={handleEndMeeting}>
+        End Meeting
+      </Button>
     </Stack>
   );
-}
+};
+
+export default Controls;

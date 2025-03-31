@@ -1,11 +1,10 @@
 import { useParticipant } from "@videosdk.live/react-sdk";
 import { useEffect, useRef } from "react";
-import "../App.css";
+import Draggable from "react-draggable";
 
 const ParticipantView = ({ participantId }: { participantId: string }) => {
   const {
     displayName,
-    micOn,
     webcamOn,
     webcamStream,
     screenShareOn,
@@ -45,21 +44,22 @@ const ParticipantView = ({ participantId }: { participantId: string }) => {
 
   return (
     <div className="participant-view">
-      <p>Participant: {displayName}</p>
-      <p>Mic Status: {micOn ? "On" : "Off"}</p>
-      {webcamOn ? (
-        <video
-          className="participant-view-video"
-          ref={videoRef}
-          autoPlay
-          playsInline
-          width="200"
-          height="150"
-        />
-      ) : (
-        <p>Webcam Off</p>
-      )}
-
+      {/* <Draggable> */}
+        {webcamOn ? (
+          <video
+            className="participant-view-video"
+            ref={videoRef}
+            autoPlay
+            playsInline
+            width="200"
+            height="150"
+          />
+        ) : (
+          <div className="participant-placeholder">
+            <p>{displayName}</p>
+          </div>
+        )}
+      {/* </Draggable> */}
       {screenShareOn ? (
         <div className="screen-share-container">
           <p>Screen Sharing</p>
@@ -76,3 +76,5 @@ const ParticipantView = ({ participantId }: { participantId: string }) => {
 };
 
 export default ParticipantView;
+
+
