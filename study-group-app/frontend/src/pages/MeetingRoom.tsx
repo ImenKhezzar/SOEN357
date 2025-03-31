@@ -16,6 +16,7 @@ import TodoList from "../components/TodoList/TodoList";
 import MusicPlayer from "../components/Music/MusicPlayer";
 import PlaylistList from "../components/Music/PlaylistList";
 import WhiteBoard from "../components/WhiteBoard";
+import Timer from "../components/Timer/Timer";
 import { useMeeting } from "@videosdk.live/react-sdk";
 
 const drawerWidth = 240;
@@ -35,6 +36,7 @@ const MeetingRoom = () => {
   const [showPlaylist, setShowPlaylist] = useState(true); // State to toggle playlist visibility
   const [currentPlaylistLink, setCurrentPlaylistLink] = useState<string | null>(null);
   const [whiteBoardOpen, setWhiteBoardOpen] = useState(false);
+  const [timerOpen, setTimerOpen] = useState(false);
 
   const { roomId } = useParams<{ roomId: string }>();
   const authContext = useAuth();
@@ -89,6 +91,14 @@ const MeetingRoom = () => {
     setWhiteBoardOpen(false);
   };
 
+  const handleTimerOpen = () => {
+    setTimerOpen(true);
+  };
+
+  const handleTimerClose = () => {
+    setTimerOpen(false);
+  };
+
   return (
     <div style={{ display: "flex" }}>
       <CssBaseline />
@@ -118,7 +128,7 @@ const MeetingRoom = () => {
         </DrawerHeader>
         <Divider />
         <List>
-          <ListItem button>
+          <ListItem button onClick={handleTimerOpen}>
             <ListItemIcon>
               <TimerIcon />
             </ListItemIcon>
@@ -206,6 +216,15 @@ const MeetingRoom = () => {
         title="WhiteBoard"
       >
         <WhiteBoard />
+      </DraggableModal>
+
+      {/* Timer */}
+      <DraggableModal
+        open={timerOpen}
+        onClose={handleTimerClose}
+        title="Pomodoro Timer"
+      >
+        <Timer />
       </DraggableModal>
     </div>
   );
