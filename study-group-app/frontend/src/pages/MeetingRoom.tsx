@@ -4,17 +4,19 @@ import { MeetingProvider } from "@videosdk.live/react-sdk";
 import MeetingView from "../components/MeetingView";
 import { authToken } from "../API";
 import useAuth from "../hooks/useAuth";
-import { Drawer, List, ListItem, ListItemText, Divider, CssBaseline, IconButton, ListItemIcon, styled } from "@mui/material";
+import { Drawer, List, ListItem, ListItemText, Divider, CssBaseline, IconButton, ListItemIcon, styled, Button } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import TimerIcon from "@mui/icons-material/Timer";
 import ListIcon from "@mui/icons-material/List";
 import MusicNoteIcon from "@mui/icons-material/MusicNote";
-import WallpaperIcon from "@mui/icons-material/Wallpaper";
 import WhiteboardIcon from "@mui/icons-material/BorderColor";
-import ScreenShareIcon from "@mui/icons-material/ScreenShare";
-import DraggableModal from "../components/DraggableDialogue/DraggableModal"; // Import the reusable modal
-import TodoList from "../components/TodoList/TodoList"; // Import your TodoList component
+import DraggableModal from "../components/DraggableDialogue/DraggableModal";
+import TodoList from "../components/TodoList/TodoList";
+import MusicPlayer from "../components/Music/MusicPlayer";
+import PlaylistList from "../components/Music/PlaylistList";
+import WhiteBoard from "../components/WhiteBoard";
+import { useMeeting } from "@videosdk.live/react-sdk";
 
 const drawerWidth = 240;
 
@@ -29,8 +31,17 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 const MeetingRoom = () => {
   const [open, setOpen] = useState(false);
   const [todoOpen, setTodoOpen] = useState(false);
+  const [musicOpen, setMusicOpen] = useState(false);
+  const [showPlaylist, setShowPlaylist] = useState(true); // State to toggle playlist visibility
+  const [currentPlaylistLink, setCurrentPlaylistLink] = useState<string | null>(null);
+  const [whiteBoardOpen, setWhiteBoardOpen] = useState(false);
+
   const { roomId } = useParams<{ roomId: string }>();
   const authContext = useAuth();
+
+  const meeting = useMeeting();
+
+  console.log(meeting);
 
   if (!authContext) {
     throw new Error("useAuth must be used within an AuthProvider");
@@ -52,6 +63,30 @@ const MeetingRoom = () => {
 
   const handleTodoClose = () => {
     setTodoOpen(false);
+  };
+
+  const handleMusicOpen = () => {
+    setMusicOpen(true);
+  };
+
+  const handleMusicClose = () => {
+    setMusicOpen(false);
+  };
+
+  const handlePlayPlaylist = (link: string) => {
+    setCurrentPlaylistLink(link);
+  };
+
+  const togglePlaylistVisibility = () => {
+    setShowPlaylist((prev) => !prev);
+  };
+
+  const handleWhiteBoardOpen = () => {
+    setWhiteBoardOpen(true);
+  };
+
+  const handleWhiteBoardClose = () => {
+    setWhiteBoardOpen(false);
   };
 
   return (
@@ -97,33 +132,27 @@ const MeetingRoom = () => {
             <ListItemText primary="To-do List" />
           </ListItem>
           <Divider />
-          <ListItem button>
+          <ListItem button onClick={handleMusicOpen}>
             <ListItemIcon>
               <MusicNoteIcon />
             </ListItemIcon>
             <ListItemText primary="Music" />
           </ListItem>
-          <Divider />
+          {/* <Divider />
           <ListItem button>
             <ListItemIcon>
               <WallpaperIcon />
             </ListItemIcon>
             <ListItemText primary="Background" />
-          </ListItem>
-          <Divider />
-          <ListItem button>
+          </ListItem> */}
+          {/* <Divider />
+          <ListItem button onClick={handleWhiteBoardOpen}>
             <ListItemIcon>
               <WhiteboardIcon />
             </ListItemIcon>
             <ListItemText primary="Whiteboard" />
-          </ListItem>
+          </ListItem> */}
           <Divider />
-          <ListItem button>
-            <ListItemIcon>
-              <ScreenShareIcon />
-            </ListItemIcon>
-            <ListItemText primary="ScreenShare" />
-          </ListItem>
         </List>
       </Drawer>
       <main style={{ flexGrow: 1, padding: "24px", marginTop: "64px" }}>
@@ -140,13 +169,43 @@ const MeetingRoom = () => {
           <MeetingView />
         </MeetingProvider>
       </main>
-      {/* Reusable DraggableModal with TodoList */}
+
+      {/* TodoList */}
       <DraggableModal
         open={todoOpen}
         onClose={handleTodoClose}
         title="To-do List"
       >
-        <TodoList /> {/* Pass TodoList as children */}
+        <TodoList />
+      </DraggableModal>
+
+      {/* Music Player */}
+      <DraggableModal
+        open={musicOpen}
+        onClose={handleMusicClose}
+        title="Music Player"
+      >
+        {showPlaylist && <PlaylistList onPlayPlaylist={handlePlayPlaylist} />}
+        <MusicPlayer playlistLink={currentPlaylistLink} />
+        <div style={{ display: "flex", justifyContent: "center"}}>
+          <Button
+          variant="contained"
+          onClick={togglePlaylistVisibility}
+          className="submit-button"
+          style={{ padding: "0px",  }}
+        >
+          {showPlaylist ? "Hide Playlist" : "Show Playlist"}
+        </Button>
+        </div>
+      </DraggableModal>
+
+      {/* Whitebord */}
+      <DraggableModal
+        open={whiteBoardOpen}
+        onClose={handleWhiteBoardClose}
+        title="WhiteBoard"
+      >
+        <WhiteBoard />
       </DraggableModal>
     </div>
   );
