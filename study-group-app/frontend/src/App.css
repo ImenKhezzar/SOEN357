@@ -70,6 +70,14 @@ button.submit-button {
 
 .authentication-header {
   font-family: "Outfit", sans-serif;
+  color: black;
+}
+
+.authentication-logo {
+  width: 300px;
+  height: auto;
+  vertical-align: middle;
+  margin-bottom: -5px;
 }
 
 .logout-button {
@@ -113,15 +121,15 @@ button.submit-button {
   justify-content: flex-start;
 }
 
-button.add-list-button{
-  color:#9387B4; 
+button.add-list-button {
+  color: #9387b4;
   text-transform: none;
   font-size: 1.1rem;
 }
 .participant-view {
   border: 1px solid #ddd;
-  padding: 10px;
-  margin: 10px;
+  padding: 0px;
+  margin: 0px;
   border-radius: 8px;
   background-color: #f9f9f9;
   text-align: center;
@@ -139,8 +147,20 @@ button.add-list-button{
 .participant-view-video {
   width: 100%;
   height: auto;
-  border-radius: 5px;
-  transform: scaleX(-1); /* Mirror effect */
+  border-radius: 8px;
+  transform: scaleX(-1);
+}
+
+.participant-placeholder {
+  width: 220px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #444;
+  color: white;
+  font-size: 30px;
+  border-radius: 8px;
 }
 
 .screen-share-container {
@@ -179,26 +199,33 @@ button.add-list-button{
   left: 1em;
 }
 
-.meeting-room{
+.meeting-room {
   color: black;
+  width: 95vw;
+  height: 90vh;
 }
-
 
 .playlist-list-container {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
-  position:absolute;
+  position: absolute;
   left: 20%;
   top: 45%;
 }
 
 .music-player {
   width: 100%;
-  position:absolute;
+  position: absolute;
   left: 18%;
   top: 75%;
 }
 
-
+.controls {
+  position: fixed;
+  bottom: 5vh;
+  left: 50vw;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
