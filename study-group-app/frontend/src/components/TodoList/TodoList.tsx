@@ -75,8 +75,8 @@ const TodoList: React.FC = () => {
     };
 
     return (
-        <div className='todo-list-container'>
-            <div className="white-box" style={{ width: '25%', maxWidth: '30vw', maxHeight: '40vw', margin: 'auto' }}>
+        <div>
+            <div>
                 <h2>My Tasks</h2>
                 <div className="add-task-container">
                 </div>

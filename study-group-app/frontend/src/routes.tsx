@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import RequireAuth from './components/Authentication/RequireAuth';
 import Authentication from './pages/Authentication';
 import HomePage from './pages/HomePage';
-import MeetingRoom from './components/MeetingRoom';
+import MeetingRoom from './pages/MeetingRoom';
 
 
 const AppRoutes: React.FC = () => {
