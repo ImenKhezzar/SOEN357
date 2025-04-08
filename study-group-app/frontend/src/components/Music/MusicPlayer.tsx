@@ -13,7 +13,7 @@ const MusicPlayerContainer: React.FC<MusicPlayerProps> = ({ playlistLink }) => {
         <div style={{ textAlign: "center", padding: "10px" }}>
             <h2>🎵 YouTube Playlist Player</h2>
             <YouTubePlaylistInput onSetPlaylistId={setPlaylistId} playlistLink={playlistLink} />
-            {playlistId && <YouTubePlaylistPlayer playlistId={playlistId} showVideo={false} />}
+            <YouTubePlaylistPlayer playlistId={playlistId} showVideo={false} />
         </div>
     );
 };
