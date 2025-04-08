@@ -5,7 +5,7 @@ const routes = require('./api');
 const cookieParser = require('cookie-parser');
 const errorHandler = require('./middleware/errorHandler');
 
-const PORT = process.env.BACKEND_PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
 const allowedOrigins = ['http://localhost:3000', 'http://localhost:5173'];
 const corsOptions = {
