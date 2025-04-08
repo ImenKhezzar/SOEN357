@@ -120,6 +120,7 @@ const MeetingRoom = () => {
     { name: "Desk", url: "/desk.jpg" },
     { name: "Amsterdam", url: "/Amsterdam.jpg" },
     { name: "Sunset", url: "/sunset.jpg" },
+    { name: "Camping", url: "/camping.jpg" },
   ];
 
   const [background, setBackground] = useState("/background.jpg");
@@ -131,7 +132,7 @@ const MeetingRoom = () => {
         backgroundSize: "cover",
         backgroundPosition: "center",
         minHeight: "100vh",
-        padding: "20px",
+        padding: "33px",
       }}
     >
       <CssBaseline />
@@ -190,7 +191,7 @@ const MeetingRoom = () => {
             <ListItemIcon>
               <WallpaperIcon />
             </ListItemIcon>
-          
+
             <div>
               <select
                 onChange={(e) => setBackground(e.target.value)}
@@ -277,11 +278,7 @@ const MeetingRoom = () => {
       </DraggableModal>
 
       {/* Timer */}
-      <DraggableModal
-        open={timerOpen}
-        onClose={handleTimerClose}
-        title=" "
-      >
+      <DraggableModal open={timerOpen} onClose={handleTimerClose} title=" ">
         <Timer />
       </DraggableModal>
     </div>
