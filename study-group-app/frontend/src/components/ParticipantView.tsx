@@ -19,11 +19,8 @@ const ParticipantView = ({ participantId }: { participantId: string }) => {
       if (webcamOn && webcamStream) {
         const mediaStream = new MediaStream();
         mediaStream.addTrack(webcamStream.track);
-
         videoRef.current.srcObject = mediaStream;
-        videoRef.current
-          .play()
-          .catch((error) => console.error("Video play failed:", error));
+        videoRef.current.play().catch(console.error);
       } else {
         videoRef.current.srcObject = null;
       }
@@ -40,41 +37,61 @@ const ParticipantView = ({ participantId }: { participantId: string }) => {
         screenShareRef.current.srcObject = null;
       }
     }
-  }, [screenShareStream, screenShareOn]);
+  }, [screenShareOn, screenShareStream]);
 
   return (
-    <div className="participant-view">
-      {/* <Draggable> */}
-        {webcamOn ? (
-          <video
-            className="participant-view-video"
-            ref={videoRef}
-            autoPlay
-            playsInline
-            width="200"
-            height="150"
-          />
-        ) : (
-          <div className="participant-placeholder">
-            <p>{displayName}</p>
-          </div>
-        )}
-      {/* </Draggable> */}
-      {screenShareOn ? (
-        <div className="screen-share-container">
-          <p>Screen Sharing</p>
+    <div
+      className="participant-wrapper"
+      style={{ position: "relative", width: "100%", height: "100%" }}
+    >
+      {screenShareOn && (
+        <div
+          className="screen-share-container"
+          style={{ width: "100%", height: "100%" }}
+        >
           <video
             className="screen-share-video"
             ref={screenShareRef}
             autoPlay
             playsInline
+            style={{ width: "100%", height: "100%", objectFit: "contain" }}
           />
         </div>
-      ) : null}
+      )}
+
+      {webcamOn && (
+        <Draggable>
+          <div
+            className="webcam-video-container"
+            style={{
+              position: "absolute",
+              bottom: "20px",
+              right: "20px",
+              width: "200px",
+              height: "150px",
+              backgroundColor: "#000",
+              borderRadius: "8px",
+              overflow: "hidden",
+              zIndex: 10,
+            }}
+          >
+            <video
+              ref={videoRef}
+              autoPlay
+              playsInline
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            />
+          </div>
+        </Draggable>
+      )}
+
+      {!webcamOn && !screenShareOn && (
+        <div className="participant-placeholder">
+          <p>{displayName}</p>
+        </div>
+      )}
     </div>
   );
 };
 
 export default ParticipantView;
-
-

@@ -1,6 +1,6 @@
 #root {
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0;
   text-align: center;
   justify-content: center;
 }
@@ -228,4 +228,91 @@ button.add-list-button {
   left: 50vw;
   transform: translateX(-50%);
   z-index: 1000;
+}
+
+.dashboard-page {
+  position: relative;
+  background-image: url("../public/background.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100vw;
+  padding: 0;
+  margin-top: 0;
+}
+
+/* Overlay */
+.dashboard-page::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  z-index: 1;
+}
+
+/* Sidebar styles */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 250px;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 100;
+}
+
+.sidebar h2 {
+  color: rgb(11, 9, 9);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.sidebar-menu {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 100px;
+}
+
+.sidebar-menu li {
+  margin-top: 10px;
+}
+
+.sidebar-menu li a {
+  color: rgb(28, 24, 24);
+  text-decoration: none;
+  font-size: 1.2rem;
+  display: block;
+  padding: 10px;
+}
+
+.sidebar-menu li a:hover {
+  background-color: #9387b4;
+  border-radius: 5px;
+}
+
+/* Add a responsive design for smaller screens */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 200px;
+  }
+}
+
+.user-rect {
+  color: black;
+  width: 77vw;
+  height: 200px;
+  background-color: #e3dbf6;
+  border-radius: 30px;
+  margin-top: -270px;
+  margin-left: 250px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
