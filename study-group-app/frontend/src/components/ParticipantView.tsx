@@ -47,7 +47,7 @@ const ParticipantView = ({ participantId }: { participantId: string }) => {
       {screenShareOn && (
         <div
           className="screen-share-container"
-          style={{ width: "100%", height: "100%" }}
+          style={{ width: "80%", height: "80%" }}
         >
           <video
             className="screen-share-video"
@@ -71,6 +71,7 @@ const ParticipantView = ({ participantId }: { participantId: string }) => {
               height: "150px",
               backgroundColor: "#000",
               borderRadius: "8px",
+
               overflow: "hidden",
               zIndex: 10,
             }}
@@ -79,7 +80,12 @@ const ParticipantView = ({ participantId }: { participantId: string }) => {
               ref={videoRef}
               autoPlay
               playsInline
-              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                transform: " scaleX(-1)",
+              }}
             />
           </div>
         </Draggable>

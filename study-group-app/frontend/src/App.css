@@ -90,10 +90,10 @@ button.submit-button {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 100%;
+  width: 30vw;
   position: absolute;
-  left: 20%;
-  top: 10%;
+  left: 50%;
+  top: 20%;
 }
 
 .todo-list {
@@ -161,14 +161,16 @@ button.add-list-button {
   color: white;
   font-size: 30px;
   border-radius: 8px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
 }
 
 .screen-share-container {
   margin-top: 10px;
   padding: 5px;
-  border: 2px dashed #4caf50;
-  border-radius: 8px;
-  background-color: #eef;
+
 }
 
 .screen-share-video {
@@ -209,17 +211,17 @@ button.add-list-button {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 100%;
+  width: 30vw;
   position: absolute;
-  left: 20%;
-  top: 45%;
+  left: 50%;
+  top: 55%;
 }
 
 .music-player {
-  width: 100%;
+  width: 30vw;
   position: absolute;
-  left: 18%;
-  top: 75%;
+  left: 10%;
+  top: 55%;
 }
 
 .controls {
