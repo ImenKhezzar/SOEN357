@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const BASE_URL = import.meta.env.AXIOS_BASE_URL;
+const BASE_URL:string  = import.meta.env.VITE_AXIOS_BASE_URL;
+
 
 export default axios.create({
     baseURL: BASE_URL
