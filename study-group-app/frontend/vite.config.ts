@@ -6,5 +6,6 @@ export default defineConfig({
   plugins: [react()],
   server: {
     host: 'soen357.onrender.com', // Allow this host
+    allowedHosts: ['soen357.onrender.com'], // Explicitly allow this host
   },
 })
