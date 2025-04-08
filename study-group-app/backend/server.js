@@ -7,7 +7,13 @@ const errorHandler = require('./middleware/errorHandler');
 
 const PORT = process.env.PORT || 3000;
 
-const allowedOrigins = ['http://localhost:3000', 'http://localhost:5173', 'https://soen357.onrender.com/' ];
+const allowedOrigins = [
+    'http://localhost:3000',
+    'http://localhost:5173',
+    'https://soen357.onrender.com',
+    'https://soen357-1.onrender.com'
+];
+
 const corsOptions = {
     origin: function (origin, callback) {
         if (!origin || allowedOrigins.includes(origin)) {
