@@ -114,10 +114,12 @@ const MeetingRoom = () => {
 
   const backgrounds = [
     { name: "Gradient", url: "/background.jpg" },
-    { name: "Forest", url: "/forest.jpeg" },
     { name: "Street", url: "/street.jpg" },
     { name: "Night View", url: "/nightview.jpg" },
     { name: "Christelle", url: "/christelle.jpg" },
+    { name: "Desk", url: "/desk.jpg" },
+    { name: "Amsterdam", url: "/Amsterdam.jpg" },
+    { name: "Sunset", url: "/sunset.jpg" },
   ];
 
   const [background, setBackground] = useState("/background.jpg");
@@ -211,10 +213,10 @@ const MeetingRoom = () => {
               </select>
             </div>
           </ListItem>
-          {/* <Divider />
-          <ListItem button onClick={handleWhiteBoardOpen}>
+          <Divider />
+          {/* <ListItem button onClick={handleWhiteBoardOpen}>
             <ListItemIcon>
-              <WhiteboardIcon />
+              <WhiteBoard />
             </ListItemIcon>
             <ListItemText primary="Whiteboard" />
           </ListItem> */}

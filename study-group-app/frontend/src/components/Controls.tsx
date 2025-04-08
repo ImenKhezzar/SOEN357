@@ -14,8 +14,7 @@ interface ControlsProps {
   handleEndMeeting: () => void;
 }
 
-
-const Controls: React.FC<ControlsProps> = ({ handleLeave, handleEndMeeting }) => {
+const Controls: React.FC<ControlsProps> = ({ handleLeave }) => {
   const {
     toggleMic,
     toggleWebcam,
@@ -57,10 +56,6 @@ const Controls: React.FC<ControlsProps> = ({ handleLeave, handleEndMeeting }) =>
 
       <Button variant="contained" onClick={handleLeave}>
         Leave Meeting
-      </Button>
-
-      <Button variant="contained" onClick={handleEndMeeting}>
-        End Meeting
       </Button>
     </Stack>
   );
