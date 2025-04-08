@@ -29,6 +29,8 @@ import PlaylistList from "../components/Music/PlaylistList";
 import WhiteBoard from "../components/WhiteBoard";
 import Timer from "../components/Timer/Timer";
 import { useMeeting } from "@videosdk.live/react-sdk";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy"; // Import copy icon
+import Tooltip from "@mui/material/Tooltip"; // Import Tooltip
 
 const drawerWidth = 240;
 
@@ -112,6 +114,12 @@ const MeetingRoom = () => {
     setTimerOpen(false);
   };
 
+  const handleCopyRoomId = () => {
+    if (roomId) {
+      navigator.clipboard.writeText(roomId);
+    }
+  };
+
   const backgrounds = [
     { name: "Gradient", url: "/background.jpg" },
     { name: "Street", url: "/street.jpg" },
@@ -160,6 +168,16 @@ const MeetingRoom = () => {
         }}
       >
         <DrawerHeader>
+          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+            <span>
+              Meeting ID: <br /> {roomId}
+            </span>
+            <Tooltip title="Copy Meeting ID">
+              <IconButton onClick={handleCopyRoomId} size="small">
+                <ContentCopyIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+          </div>
           <IconButton onClick={handleDrawerClose}>
             <ChevronLeftIcon />
           </IconButton>
@@ -224,7 +242,8 @@ const MeetingRoom = () => {
           <Divider />
         </List>
       </Drawer>
-      <main>
+
+      <div style={{marginTop: "1%"}}>
         <MeetingProvider
           config={{
             meetingId: roomId ?? "",
@@ -237,7 +256,7 @@ const MeetingRoom = () => {
         >
           <MeetingView />
         </MeetingProvider>
-      </main>
+      </div>
 
       {/* TodoList */}
       <DraggableModal
