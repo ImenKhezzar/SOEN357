@@ -4,13 +4,24 @@ import { MeetingProvider } from "@videosdk.live/react-sdk";
 import MeetingView from "../components/MeetingView";
 import { authToken } from "../API";
 import useAuth from "../hooks/useAuth";
-import { Drawer, List, ListItem, ListItemText, Divider, CssBaseline, IconButton, ListItemIcon, styled, Button } from "@mui/material";
+import {
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
+  Divider,
+  CssBaseline,
+  IconButton,
+  ListItemIcon,
+  styled,
+  Button,
+} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import TimerIcon from "@mui/icons-material/Timer";
 import ListIcon from "@mui/icons-material/List";
 import MusicNoteIcon from "@mui/icons-material/MusicNote";
-import WhiteboardIcon from "@mui/icons-material/BorderColor";
+import WallpaperIcon from "@mui/icons-material/Wallpaper";
 import DraggableModal from "../components/DraggableDialogue/DraggableModal";
 import TodoList from "../components/TodoList/TodoList";
 import MusicPlayer from "../components/Music/MusicPlayer";
@@ -18,15 +29,17 @@ import PlaylistList from "../components/Music/PlaylistList";
 import WhiteBoard from "../components/WhiteBoard";
 import Timer from "../components/Timer/Timer";
 import { useMeeting } from "@videosdk.live/react-sdk";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy"; // Import copy icon
+import Tooltip from "@mui/material/Tooltip"; // Import Tooltip
 
 const drawerWidth = 240;
 
-const DrawerHeader = styled('div')(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
+const DrawerHeader = styled("div")(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
   padding: theme.spacing(0, 1),
   ...theme.mixins.toolbar,
-  justifyContent: 'flex-end',
+  justifyContent: "flex-end",
 }));
 
 const MeetingRoom = () => {
@@ -34,7 +47,9 @@ const MeetingRoom = () => {
   const [todoOpen, setTodoOpen] = useState(false);
   const [musicOpen, setMusicOpen] = useState(false);
   const [showPlaylist, setShowPlaylist] = useState(true); // State to toggle playlist visibility
-  const [currentPlaylistLink, setCurrentPlaylistLink] = useState<string | null>(null);
+  const [currentPlaylistLink, setCurrentPlaylistLink] = useState<string | null>(
+    null
+  );
   const [whiteBoardOpen, setWhiteBoardOpen] = useState(false);
   const [timerOpen, setTimerOpen] = useState(false);
 
@@ -99,8 +114,35 @@ const MeetingRoom = () => {
     setTimerOpen(false);
   };
 
+  const handleCopyRoomId = () => {
+    if (roomId) {
+      navigator.clipboard.writeText(roomId);
+    }
+  };
+
+  const backgrounds = [
+    { name: "Gradient", url: "/background.jpg" },
+    { name: "Street", url: "/street.jpg" },
+    { name: "Night View", url: "/nightview.jpg" },
+    { name: "Christelle", url: "/christelle.jpg" },
+    { name: "Desk", url: "/desk.jpg" },
+    { name: "Amsterdam", url: "/Amsterdam.jpg" },
+    { name: "Sunset", url: "/sunset.jpg" },
+    { name: "Camping", url: "/camping.jpg" },
+  ];
+
+  const [background, setBackground] = useState("/background.jpg");
+
   return (
-    <div style={{ display: "flex" }}>
+    <div
+      style={{
+        backgroundImage: `url(${background})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        minHeight: "100vh",
+        padding: "33px",
+      }}
+    >
       <CssBaseline />
       <IconButton
         color="inherit"
@@ -118,10 +160,24 @@ const MeetingRoom = () => {
         sx={{
           width: drawerWidth,
           flexShrink: 0,
-          [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: "border-box", height: "auto" },
+          [`& .MuiDrawer-paper`]: {
+            width: drawerWidth,
+            boxSizing: "border-box",
+            height: "auto",
+          },
         }}
       >
         <DrawerHeader>
+          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+            <span>
+              Meeting ID: <br /> {roomId}
+            </span>
+            <Tooltip title="Copy Meeting ID">
+              <IconButton onClick={handleCopyRoomId} size="small">
+                <ContentCopyIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+          </div>
           <IconButton onClick={handleDrawerClose}>
             <ChevronLeftIcon />
           </IconButton>
@@ -148,24 +204,46 @@ const MeetingRoom = () => {
             </ListItemIcon>
             <ListItemText primary="Music" />
           </ListItem>
-          {/* <Divider />
-          <ListItem button>
+          <Divider />
+          <ListItem>
             <ListItemIcon>
               <WallpaperIcon />
             </ListItemIcon>
-            <ListItemText primary="Background" />
-          </ListItem> */}
-          {/* <Divider />
-          <ListItem button onClick={handleWhiteBoardOpen}>
+
+            <div>
+              <select
+                onChange={(e) => setBackground(e.target.value)}
+                value={background}
+                style={{
+                  padding: "8px",
+                  width: "150px",
+                  borderRadius: "8px",
+                  fontWeight: "bold",
+                  background: "rgba(255, 255, 255, 0.8)",
+                  border: "none",
+                  color: "rgb(0,0,0)",
+                }}
+              >
+                {backgrounds.map((bg) => (
+                  <option key={bg.name} value={bg.url}>
+                    {bg.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </ListItem>
+          <Divider />
+          {/* <ListItem button onClick={handleWhiteBoardOpen}>
             <ListItemIcon>
-              <WhiteboardIcon />
+              <WhiteBoard />
             </ListItemIcon>
             <ListItemText primary="Whiteboard" />
           </ListItem> */}
           <Divider />
         </List>
       </Drawer>
-      <main style={{ flexGrow: 1, padding: "24px", marginTop: "64px" }}>
+
+      <div style={{marginTop: "1%"}}>
         <MeetingProvider
           config={{
             meetingId: roomId ?? "",
@@ -178,7 +256,7 @@ const MeetingRoom = () => {
         >
           <MeetingView />
         </MeetingProvider>
-      </main>
+      </div>
 
       {/* TodoList */}
       <DraggableModal
@@ -197,15 +275,15 @@ const MeetingRoom = () => {
       >
         {showPlaylist && <PlaylistList onPlayPlaylist={handlePlayPlaylist} />}
         <MusicPlayer playlistLink={currentPlaylistLink} />
-        <div style={{ display: "flex", justifyContent: "center"}}>
+        <div style={{ display: "flex", justifyContent: "center" }}>
           <Button
-          variant="contained"
-          onClick={togglePlaylistVisibility}
-          className="submit-button"
-          style={{ padding: "0px",  }}
-        >
-          {showPlaylist ? "Hide Playlist" : "Show Playlist"}
-        </Button>
+            variant="contained"
+            onClick={togglePlaylistVisibility}
+            className="submit-button"
+            style={{ padding: "0px" }}
+          >
+            {showPlaylist ? "Hide Playlist" : "Show Playlist"}
+          </Button>
         </div>
       </DraggableModal>
 
@@ -219,11 +297,7 @@ const MeetingRoom = () => {
       </DraggableModal>
 
       {/* Timer */}
-      <DraggableModal
-        open={timerOpen}
-        onClose={handleTimerClose}
-        title="Pomodoro Timer"
-      >
+      <DraggableModal open={timerOpen} onClose={handleTimerClose} title=" ">
         <Timer />
       </DraggableModal>
     </div>

@@ -5,7 +5,8 @@ import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
 import NoPhotographyIcon from "@mui/icons-material/NoPhotography";
 import PresentToAllIcon from "@mui/icons-material/PresentToAll";
 import CancelPresentationIcon from "@mui/icons-material/CancelPresentation";
-import { Button, Stack } from "@mui/material";
+import CallEndIcon from "@mui/icons-material/CallEnd";
+import { IconButton, Stack } from "@mui/material";
 import WhiteBoard from "./WhiteBoard";
 import "../App.css";
 
@@ -14,8 +15,7 @@ interface ControlsProps {
   handleEndMeeting: () => void;
 }
 
-
-const Controls: React.FC<ControlsProps> = ({ handleLeave, handleEndMeeting }) => {
+const Controls: React.FC<ControlsProps> = ({ handleLeave }) => {
   const {
     toggleMic,
     toggleWebcam,
@@ -31,37 +31,31 @@ const Controls: React.FC<ControlsProps> = ({ handleLeave, handleEndMeeting }) =>
 
   return (
     <Stack direction="row" spacing={2} sx={{ marginTop: "10px" }}>
-      {/* Toggle Microphone */}
-      <Button
-        variant="contained"
-        startIcon={localMicOn ? <MicIcon /> : <MicOffIcon />}
-        onClick={() => toggleMic()}
-      />
+      <IconButton variant="contained" onClick={() => toggleMic()}>
+        {localMicOn ? <MicIcon /> : <MicOffIcon />}
+      </IconButton>
 
-      {/* Toggle Webcam */}
-      <Button
+      <IconButton
         variant="contained"
-        startIcon={localWebcamOn ? <PhotoCameraIcon /> : <NoPhotographyIcon />}
+        size="medium"
         onClick={() => toggleWebcam()}
-      />
+      >
+        {localWebcamOn ? <PhotoCameraIcon /> : <NoPhotographyIcon />}
+      </IconButton>
 
-      <Button
+      <IconButton
         variant="contained"
-        startIcon={
-          localScreenShareOn ? <CancelPresentationIcon /> : <PresentToAllIcon />
-        }
+        size="medium"
         onClick={() => toggleScreenShare()}
-      />
+      >
+        {localScreenShareOn ? <CancelPresentationIcon /> : <PresentToAllIcon />}
+      </IconButton>
 
       <WhiteBoard />
 
-      <Button variant="contained" onClick={handleLeave}>
-        Leave Meeting
-      </Button>
-
-      <Button variant="contained" onClick={handleEndMeeting}>
-        End Meeting
-      </Button>
+      <IconButton variant="contained" size="medium" onClick={handleLeave}>
+        <CallEndIcon />
+      </IconButton>
     </Stack>
   );
 };

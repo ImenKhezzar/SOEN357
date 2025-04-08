@@ -42,18 +42,7 @@ const YouTubePlaylistInput: React.FC<YouTubePlaylistInputProps> = ({ onSetPlayli
     }
   };
 
-  return (
-    <form onSubmit={handleSubmit} style={{ marginBottom: "20px" }}>
-      <input
-        type="text"
-        placeholder="Enter YouTube Playlist URL"
-        value={inputUrl}
-        onChange={(e) => setInputUrl(e.target.value)}
-        required
-      />
-      <button type="submit">Load Playlist</button>
-    </form>
-  );
+  return null;
 };
 
 export default YouTubePlaylistInput;

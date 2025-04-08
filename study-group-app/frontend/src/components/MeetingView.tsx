@@ -5,7 +5,6 @@ import Controls from "./Controls";
 import { useNavigate, useParams } from "react-router-dom";
 
 const MeetingView = () => {
-  const { roomId } = useParams();
   const navigate = useNavigate();
 
   const { join, leave, end, participants } = useMeeting({
@@ -39,22 +38,19 @@ const MeetingView = () => {
 
   return (
     <div className="meeting-room">
-      <h3>Meeting: {roomId}</h3>
 
-        <h4>Participants:</h4>
-        <div style={{ display: "flex", flexWrap: "wrap" }}>
-          {Array.from(participants.keys()).map((participantId) => (
-            <ParticipantView
-              key={participantId}
-              participantId={participantId}
-            />
-          ))}
-        </div>
-    
-      <div className="controls">
-        <Controls handleLeave={handleLeave} handleEndMeeting={handleEndMeeting} />
+      <div style={{ display: "flex", flexWrap: "wrap" }}>
+        {Array.from(participants.keys()).map((participantId) => (
+          <ParticipantView key={participantId} participantId={participantId} />
+        ))}
       </div>
-     
+
+      <div className="controls">
+        <Controls
+          handleLeave={handleLeave}
+          handleEndMeeting={handleEndMeeting}
+        />
+      </div>
     </div>
   );
 };

@@ -22,12 +22,12 @@ const HomePage = () => {
                 <Logout />
                 <StartStudying />
                 <div className="todo-list-container">
-                    <div className="white-box" style={{ width: '25%', maxWidth: '30vw', maxHeight: '40vw', margin: 'auto' }}> 
+                    <div className="white-box" style={{ width: '100%', maxHeight: '40vw', margin: 'auto' }}> 
                     <TodoList />
                     </div>
                 </div>
                 <div className='playlist-list-container'>
-                    <div className="white-box" style={{ width: '25%', maxWidth: '30vw', margin: 'auto' }}>
+                    <div className="white-box" style={{ width: '100%', maxWidth: '30vw', margin: 'auto' }}>
                         <PlaylistList onPlayPlaylist={handlePlayPlaylist} /> 
                     </div>
                 </div>
