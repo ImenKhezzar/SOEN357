@@ -40,7 +40,7 @@ const MeetingView = () => {
   return (
     <div className="meeting-room">
       <Draggable>
-        <div style={{ display: "flex", flexDirection: "column", gap: "160px" }}>
+        <div className="multiple-p-display" style={{ display: "flex", flexDirection: "column", gap: "160px", maxHeight:"80vh" }}>
           {Array.from(participants.keys()).map((participantId) => (
             <ParticipantView
               key={participantId}

@@ -27,7 +27,7 @@ body {
   position: relative;
   left: 20%;
   width: 60%;
-  margin-bottom:10px;
+  margin-bottom: 10px;
 }
 
 .input-container-row {
@@ -41,7 +41,6 @@ body {
 .input-label {
   display: block;
   color: #4b5563;
-
 }
 
 button.submit-button {
@@ -166,15 +165,17 @@ button.add-list-button {
   font-size: 30px;
   border-radius: 8px;
   position: absolute;
-  top: 20px;
+  top: -800px;
   right: 20px;
   z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 160px;
 }
 
 .screen-share-container {
   margin-top: 10px;
   padding: 5px;
-
 }
 
 .screen-share-video {
