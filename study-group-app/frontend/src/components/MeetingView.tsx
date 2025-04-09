@@ -39,7 +39,7 @@ const MeetingView = () => {
   return (
     <div className="meeting-room">
 
-      <div style={{ display: "flex", flexWrap: "wrap" }}>
+      <div style={{ display: "flex", flexDirection: "column" }}>
         {Array.from(participants.keys()).map((participantId) => (
           <ParticipantView key={participantId} participantId={participantId} />
         ))}

@@ -56,9 +56,7 @@ const MeetingRoom = () => {
   const { roomId } = useParams<{ roomId: string }>();
   const authContext = useAuth();
 
-  const meeting = useMeeting();
-
-  console.log(meeting);
+  //const meeting = useMeeting();
 
   if (!authContext) {
     throw new Error("useAuth must be used within an AuthProvider");
@@ -247,8 +245,8 @@ const MeetingRoom = () => {
         <MeetingProvider
           config={{
             meetingId: roomId ?? "",
-            micEnabled: true,
-            webcamEnabled: true,
+            micEnabled: false,
+            webcamEnabled: false,
             name: username,
             debugMode: false,
           }}
