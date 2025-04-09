@@ -10,13 +10,17 @@ import { IconButton, Stack } from "@mui/material";
 import WhiteBoard from "./WhiteBoard";
 import "../App.css";
 import { useEffect } from "react";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 interface ControlsProps {
   handleLeave: () => void;
   handleEndMeeting: () => void;
 }
 
-const Controls: React.FC<ControlsProps> = ({ handleLeave }) => {
+const Controls: React.FC<ControlsProps> = ({
+  handleLeave,
+  handleEndMeeting,
+}) => {
   const {
     toggleMic,
     toggleWebcam,
@@ -60,6 +64,10 @@ const Controls: React.FC<ControlsProps> = ({ handleLeave }) => {
       <WhiteBoard />
 
       <IconButton variant="contained" size="medium" onClick={handleLeave}>
+        <LogoutIcon />
+      </IconButton>
+
+      <IconButton variant="contained" size="medium" onClick={handleEndMeeting}>
         <CallEndIcon />
       </IconButton>
     </Stack>
