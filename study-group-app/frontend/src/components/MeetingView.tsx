@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import ParticipantView from "./ParticipantView";
 import Controls from "./Controls";
 import { useNavigate, useParams } from "react-router-dom";
+import Draggable from "react-draggable";
 
 const MeetingView = () => {
   const navigate = useNavigate();
@@ -38,13 +39,16 @@ const MeetingView = () => {
 
   return (
     <div className="meeting-room">
-
-      <div style={{ display: "flex", flexDirection: "column" }}>
-        {Array.from(participants.keys()).map((participantId) => (
-          <ParticipantView key={participantId} participantId={participantId} />
-        ))}
-      </div>
-
+      <Draggable>
+        <div style={{ display: "flex", flexDirection: "column", gap: "160px" }}>
+          {Array.from(participants.keys()).map((participantId) => (
+            <ParticipantView
+              key={participantId}
+              participantId={participantId}
+            />
+          ))}
+        </div>
+      </Draggable>
       <div className="controls">
         <Controls
           handleLeave={handleLeave}

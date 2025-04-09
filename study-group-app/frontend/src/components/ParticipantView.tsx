@@ -1,6 +1,6 @@
 import { useParticipant } from "@videosdk.live/react-sdk";
 import { useEffect, useRef } from "react";
-import Draggable from "react-draggable";
+
 
 const ParticipantView = ({ participantId }: { participantId: string }) => {
   const {
@@ -79,37 +79,35 @@ const ParticipantView = ({ participantId }: { participantId: string }) => {
       )}
 
       {webcamOn && (
-        <Draggable>
-          <div
-            className="webcam-video-container"
+        <div
+          className="webcam-video-container"
+          style={{
+            position: "absolute",
+            bottom: "20px",
+            right: "20px",
+            width: "200px",
+            height: "150px",
+            backgroundColor: "#000",
+            borderRadius: "8px",
+
+            overflow: "hidden",
+            zIndex: 10,
+          }}
+        >
+          <audio ref={micRef} autoPlay muted={isLocal} />
+
+          <video
+            ref={videoRef}
+            autoPlay
+            playsInline
             style={{
-              position: "absolute",
-              bottom: "20px",
-              right: "20px",
-              width: "200px",
-              height: "150px",
-              backgroundColor: "#000",
-              borderRadius: "8px",
-
-              overflow: "hidden",
-              zIndex: 10,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              transform: " scaleX(-1)",
             }}
-          >
-            <audio ref={micRef} autoPlay muted={isLocal} />
-
-            <video
-              ref={videoRef}
-              autoPlay
-              playsInline
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                transform: " scaleX(-1)",
-              }}
-            />
-          </div>
-        </Draggable>
+          />
+        </div>
       )}
 
       {!webcamOn && !screenShareOn && (
