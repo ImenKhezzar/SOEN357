@@ -56,7 +56,8 @@ const MeetingRoom = () => {
   const { roomId } = useParams<{ roomId: string }>();
   const authContext = useAuth();
 
-  //const meeting = useMeeting();
+  const meeting = useMeeting();
+  console.log(meeting);
 
   if (!authContext) {
     throw new Error("useAuth must be used within an AuthProvider");
