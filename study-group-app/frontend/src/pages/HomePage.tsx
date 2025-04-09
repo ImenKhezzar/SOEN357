@@ -23,6 +23,7 @@ const HomePage = () => {
                 <StartStudying />
                 <div className="todo-list-container">
                     <div className="white-box" style={{ width: '100%', maxHeight: '30vw', margin: 'auto' }}> 
+                    <h3>My Tasks</h3>
                     <TodoList />
                     </div>
                 </div>
@@ -32,6 +33,7 @@ const HomePage = () => {
                     </div>
                 </div>
                 <div className="music-player">
+                <h3>🎵 YouTube Playlist Player</h3>
                     <MusicPlayer playlistLink={currentPlaylistLink} />
                 </div>
             </div>
