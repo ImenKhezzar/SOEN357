@@ -140,7 +140,7 @@ const MeetingRoom = () => {
         backgroundPosition: "center",
         minHeight: "100vh",
         padding: "0",
-        height: "110vh",
+        height: "100vh",
         width: "100vw",
         marginTop: "-20px",
       }}
