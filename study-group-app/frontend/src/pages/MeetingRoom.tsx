@@ -141,7 +141,7 @@ const MeetingRoom = () => {
         minHeight: "100vh",
         padding: "0",
         height: "110vh",
-        width:"100vw",
+        width: "100vw",
         marginTop: "-20px",
       }}
     >
@@ -217,10 +217,10 @@ const MeetingRoom = () => {
                 onChange={(e) => setBackground(e.target.value)}
                 value={background}
                 style={{
-                  padding: "8px",
+                  padding: "0",
+                  fontSize: "15px",
                   width: "150px",
                   borderRadius: "8px",
-                  fontWeight: "bold",
                   background: "rgba(255, 255, 255, 0.8)",
                   border: "none",
                   color: "rgb(0,0,0)",
