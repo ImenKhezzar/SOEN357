@@ -9,7 +9,7 @@ const Authentication: React.FC = () => {
 
   return (
     <div className="authentication-container">
-      <h1 className="authentication-header">
+      <h1 className="authentication-header" style={{ justifyContent: "center", alignItems: "center" }}>
         Welcome to{" "}
         <img
           src={logo}
@@ -20,9 +20,9 @@ const Authentication: React.FC = () => {
       <div
         className="white-box"
         style={{
-          width: "70vw",
+          width: "35vw",
           paddingTop: "5%",
-          paddingBottom: "10%",
+          paddingBottom: "8%",
           maxWidth: "1280px",
         }}
       >

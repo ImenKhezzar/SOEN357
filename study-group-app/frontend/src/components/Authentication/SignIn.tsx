@@ -45,7 +45,8 @@ const SignIn = () => {
                         onChange={(e) => setUsername(e.target.value)}
                         required
                         fullWidth
-                        margin="normal"
+                        size="small"
+                        margin='none'
                     />
                 </div>
                 <div className='input-container'>
@@ -59,11 +60,12 @@ const SignIn = () => {
                         onChange={(e) => setPassword(e.target.value)}
                         required
                         fullWidth
-                        margin="normal"
+                        size="small"
+                        margin='none'
                     />
                 </div>
                 {error && <p className="error">{error}</p>}
-                <Button type="submit" variant="contained" className='submit-button' >
+                <Button type="submit" variant="contained" className='submit-button' style={{marginTop: '5px'}}>
                     Sign In
                 </Button>
             </form>
