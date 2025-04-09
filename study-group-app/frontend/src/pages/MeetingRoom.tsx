@@ -241,12 +241,12 @@ const MeetingRoom = () => {
         </List>
       </Drawer>
 
-      <div style={{marginTop: "1%"}}>
+      <div style={{ marginTop: "1%" }}>
         <MeetingProvider
           config={{
             meetingId: roomId ?? "",
-            micEnabled: false,
-            webcamEnabled: false,
+            micEnabled: true,
+            webcamEnabled: true,
             name: username,
             debugMode: false,
           }}
