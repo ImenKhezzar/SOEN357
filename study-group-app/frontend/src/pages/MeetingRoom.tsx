@@ -139,7 +139,10 @@ const MeetingRoom = () => {
         backgroundSize: "cover",
         backgroundPosition: "center",
         minHeight: "100vh",
-        padding: "33px",
+        padding: "0",
+        height: "110vh",
+        width:"100vw",
+        marginTop: "-20px",
       }}
     >
       <CssBaseline />
