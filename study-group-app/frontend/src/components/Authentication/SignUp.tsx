@@ -37,9 +37,10 @@ const SignUp = () => {
                         value={name}
                         placeholder="Enter your name"
                         variant="outlined"
+                        size="small"
                         onChange={(e) => setName(e.target.value)}
                         required
-                        margin="normal"
+                        margin='none'
                     />
                     </div>
                     <div className='input-container-row' style={{marginLeft: '10%'}}>
@@ -49,9 +50,10 @@ const SignUp = () => {
                         value={age}
                         placeholder='Enter your age'
                         variant="outlined"
+                        size="small"
                         onChange={(e) => setAge(e.target.value)}
                         required
-                        margin="normal"
+                        margin='none'
                     />
                     </div>
                 </div>
@@ -62,10 +64,11 @@ const SignUp = () => {
                         value={username}
                         placeholder='Enter your username'
                         variant="outlined"
+                        size="small"
                         onChange={(e) => setUsername(e.target.value)}
                         required
                         fullWidth
-                        margin="normal"
+                        margin='none'
                     />
                 </div>
                 <div className='input-container'>
@@ -76,10 +79,11 @@ const SignUp = () => {
                         value={password}
                         placeholder='Enter your password'
                         variant="outlined"
+                        size="small"
                         onChange={(e) => setPassword(e.target.value)}
                         required
                         fullWidth
-                        margin="normal"
+                        margin='none'
                     />
                 </div>
                 <div className='input-container'>
@@ -90,14 +94,15 @@ const SignUp = () => {
                         value={email}
                         placeholder='Enter your email'
                         variant="outlined"
+                        size="small"
                         onChange={(e) => setEmail(e.target.value)}
                         required
                         fullWidth
-                        margin="normal"
+                        margin='none'
                     />
                 </div>
                 {error && <p className="error">{error}</p>}
-                <Button type="submit" variant="contained" className='submit-button'>
+                <Button type="submit" variant="contained" className='submit-button' style={{marginTop: '5px'}}>
                     Sign Up
                 </Button>
             </form>

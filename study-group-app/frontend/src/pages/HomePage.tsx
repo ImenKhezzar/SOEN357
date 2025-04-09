@@ -22,7 +22,7 @@ const HomePage = () => {
                 <Logout />
                 <StartStudying />
                 <div className="todo-list-container">
-                    <div className="white-box" style={{ width: '100%', maxHeight: '40vw', margin: 'auto' }}> 
+                    <div className="white-box" style={{ width: '100%', maxHeight: '30vw', margin: 'auto' }}> 
                     <TodoList />
                     </div>
                 </div>
