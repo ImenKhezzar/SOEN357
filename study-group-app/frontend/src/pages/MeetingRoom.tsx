@@ -56,9 +56,7 @@ const MeetingRoom = () => {
   const { roomId } = useParams<{ roomId: string }>();
   const authContext = useAuth();
 
-  const meeting = useMeeting();
-
-  console.log(meeting);
+  //const meeting = useMeeting();
 
   if (!authContext) {
     throw new Error("useAuth must be used within an AuthProvider");
@@ -243,7 +241,7 @@ const MeetingRoom = () => {
         </List>
       </Drawer>
 
-      <div style={{marginTop: "1%"}}>
+      <div style={{ marginTop: "1%" }}>
         <MeetingProvider
           config={{
             meetingId: roomId ?? "",

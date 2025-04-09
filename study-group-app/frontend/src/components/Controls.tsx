@@ -9,6 +9,7 @@ import CallEndIcon from "@mui/icons-material/CallEnd";
 import { IconButton, Stack } from "@mui/material";
 import WhiteBoard from "./WhiteBoard";
 import "../App.css";
+import { useEffect } from "react";
 
 interface ControlsProps {
   handleLeave: () => void;
@@ -24,6 +25,11 @@ const Controls: React.FC<ControlsProps> = ({ handleLeave }) => {
     localWebcamOn,
     localScreenShareOn,
   } = useMeeting();
+
+  navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
+    const audioTracks = stream.getAudioTracks();
+    console.log("Got audio tracks: ", audioTracks);
+  });
 
   const meeting = useMeeting();
 

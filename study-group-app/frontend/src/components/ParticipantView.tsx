@@ -9,10 +9,29 @@ const ParticipantView = ({ participantId }: { participantId: string }) => {
     webcamStream,
     screenShareOn,
     screenShareStream,
+    micOn,
+    micStream,
+    isLocal,
   } = useParticipant(participantId);
 
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const screenShareRef = useRef<HTMLVideoElement | null>(null);
+  const micRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    if (micRef.current) {
+      if (micOn && micStream) {
+        const mediaStream = new MediaStream();
+        mediaStream.addTrack(micStream.track);
+        micRef.current.srcObject = mediaStream;
+        micRef.current.play().catch((error) => {
+          console.error("micRef.current.play() failed", error);
+        });
+      } else {
+        micRef.current.srcObject = null;
+      }
+    }
+  }, [micOn, micStream]);
 
   useEffect(() => {
     if (videoRef.current) {
@@ -76,6 +95,8 @@ const ParticipantView = ({ participantId }: { participantId: string }) => {
               zIndex: 10,
             }}
           >
+            <audio ref={micRef} autoPlay muted={isLocal} />
+
             <video
               ref={videoRef}
               autoPlay
