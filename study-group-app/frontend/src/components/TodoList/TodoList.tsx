@@ -76,8 +76,6 @@ const TodoList: React.FC = () => {
 
     return (
         <div>
-            <div>
-                <h2>My Tasks</h2>
                 <div className="add-task-container">
                 </div>
                 {tasks.length === 0 ? (
@@ -90,7 +88,6 @@ const TodoList: React.FC = () => {
                 <div className="add-list-container">
                     <Button variant="text" onClick={addTask} className='add-list-button'>+ Add Task</Button>
                 </div>
-            </div>
         </div>
     );
 };

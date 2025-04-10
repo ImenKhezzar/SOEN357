@@ -274,11 +274,13 @@ const MeetingRoom = () => {
       </DraggableModal>
 
       {/* Music Player */}
+    
       <DraggableModal
         open={musicOpen}
         onClose={handleMusicClose}
         title="Music Player"
       >
+        <div style={{ maxWidth: "200px" }}>
         {showPlaylist && <PlaylistList onPlayPlaylist={handlePlayPlaylist} />}
         <MusicPlayer playlistLink={currentPlaylistLink} />
         <div style={{ display: "flex", justifyContent: "center" }}>
@@ -291,7 +293,11 @@ const MeetingRoom = () => {
             {showPlaylist ? "Hide Playlist" : "Show Playlist"}
           </Button>
         </div>
+        </div>
       </DraggableModal>
+      
+
+      {/* Whiteboard */}
 
       {/* Whitebord */}
       <DraggableModal
