@@ -122,12 +122,16 @@ const MeetingRoom = () => {
   const backgrounds = [
     { name: "Gradient", url: "/background.jpg" },
     { name: "Street", url: "/street.jpg" },
+    { name: "Desk", url: "/desk.jpg" },
+    { name: "Cherry Blossom", url: "/Sakura.jpg" },
     { name: "Night View", url: "/nightview.jpg" },
     { name: "Christelle", url: "/christelle.jpg" },
-    { name: "Desk", url: "/desk.jpg" },
+
     { name: "Amsterdam", url: "/Amsterdam.jpg" },
     { name: "Sunset", url: "/sunset.jpg" },
     { name: "Camping", url: "/camping.jpg" },
+    { name: "Lake", url: "/Lake.jpg" },
+    { name: "Rain", url: "/Rain.jpg" },
   ];
 
   const [background, setBackground] = useState("/background.jpg");

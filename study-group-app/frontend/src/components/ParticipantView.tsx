@@ -105,6 +105,7 @@ const ParticipantView = ({ participantId }: { participantId: string }) => {
               height: "100%",
               objectFit: "cover",
               transform: " scaleX(-1)",
+              top:"20px",
             }}
           />
         </div>
