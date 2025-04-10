@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 import GroupsIcon from "@mui/icons-material/Groups";
 
 interface JoinRoomButtonProps {
-  onClick: () => void;
+  onClick: () => Promise<void>;
 }
 
 const JoinRoomButton: React.FC<JoinRoomButtonProps> = ({ onClick }) => (

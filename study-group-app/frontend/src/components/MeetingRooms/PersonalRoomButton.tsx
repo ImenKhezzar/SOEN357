@@ -4,7 +4,7 @@ import PersonIcon from "@mui/icons-material/Person";
 
 interface PersonalRoomButtonProps {
   username: string;
-  onClick: () => void;
+  onClick: () => Promise<void>;
 }
 
 const PersonalRoomButton: React.FC<PersonalRoomButtonProps> = ({ username, onClick }) => (
@@ -15,7 +15,7 @@ const PersonalRoomButton: React.FC<PersonalRoomButtonProps> = ({ username, onCli
       textTransform: "none",
       color: "#white",
       backgroundColor: "#927AF4",
-      width: '40%'
+      width: '50%'
 
     }}
     onClick={onClick}

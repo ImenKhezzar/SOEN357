@@ -22,16 +22,17 @@ const HomePage = () => {
     if (!authContext) {
       throw new Error("useAuth must be used within an AuthProvider");
     }
-    const {auth } = authContext;
+    const { auth } = authContext;
 
     const handlePlayPlaylist = (link: string) => {
         setCurrentPlaylistLink(link);
     };
     
 
-    const getPersonalRoomId = (username: string) => {
-        return btoa(username).replace(/=/g, '');
-    };
+  // 🔹 Generate a unique & reusable meeting ID for each user
+  const getPersonalRoomId = (username: string) => {
+    return btoa(username).replace(/=/g, ""); // Base64 encode (removes '=' for cleaner ID)
+  };
 
     const getMeetingAndToken = async (id?: string) => {
         if (meetingId) {

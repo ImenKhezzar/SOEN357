@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
 interface CreateRoomButtonProps {
-  onClick: () => void;
+  onClick: () => Promise<void>;
 }
 
 const CreateRoomButton: React.FC<CreateRoomButtonProps> = ({ onClick }) => (
@@ -14,7 +14,7 @@ const CreateRoomButton: React.FC<CreateRoomButtonProps> = ({ onClick }) => (
       textTransform: "none",
       backgroundColor: "#78CFEB",
       color: "white",
-      width: "40%",
+      width: "50%",
     }}
     onClick={onClick}
   >

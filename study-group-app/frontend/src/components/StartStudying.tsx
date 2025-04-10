@@ -8,56 +8,6 @@ import { authToken, createMeeting } from "../API";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
-const PersonalRoomButton = ({ username, onClick }: { username: string; onClick: () => void }) => (
-  <Button
-    variant="contained"
-    startIcon={<PersonIcon />}
-    sx={{
-      textTransform: "none",
-      color: "#fff",
-      backgroundColor: "#9387B4",
-      border: "2px solid #9387B4",
-    }}
-    onClick={onClick}
-  >
-    {username}'s Study Room
-  </Button>
-);
-
-const CreateRoomButton = ({ onClick }: { onClick: () => void }) => (
-  <Button
-    variant="outlined"
-    startIcon={<AddCircleOutlineIcon />}
-    sx={{
-      textTransform: "none",
-      backgroundColor: "#fff",
-      color: "#374151",
-      border: "1px solid #374151",
-      width: "50%",
-    }}
-    onClick={onClick}
-  >
-    Create Room
-  </Button>
-);
-
-const JoinRoomButton = ({ onClick }: { onClick: () => void }) => (
-  <Button
-    variant="outlined"
-    startIcon={<GroupsIcon />}
-    sx={{
-      textTransform: "none",
-      backgroundColor: "#fff",
-      color: "#374151",
-      border: "1px solid #374151",
-      width: "50%",
-    }}
-    onClick={onClick}
-  >
-    Join Room
-  </Button>
-);
-
 function StartStudying() {
   const [meetingId, setMeetingId] = useState<string | null>(null);
   const [inputMeetingId, setInputMeetingId] = useState<string>("");
@@ -71,9 +21,11 @@ function StartStudying() {
 
   const { auth } = authContext;
 
+  // 🔹 Generate a unique & reusable meeting ID for each user
   const getPersonalRoomId = (username: string) => {
-    return btoa(username).replace(/=/g, "");
+    return btoa(username).replace(/=/g, ""); // Base64 encode (removes '=' for cleaner ID)
   };
+
 
   const getMeetingAndToken = async (id?: string) => {
     if (meetingId) {
@@ -98,22 +50,65 @@ function StartStudying() {
       >
         <Stack spacing={2} direction={"column"}>
           <h3>Start Studying</h3>
-          <PersonalRoomButton
-            username={auth.username}
+
+     
+          <Button
+            variant="contained"
+            startIcon={<PersonIcon />}
+            sx={{
+              textTransform: "none",
+              color: "#fff",
+              backgroundColor: "#9387B4",
+              border: "2px solid #9387B4",
+            }}
             onClick={() => getMeetingAndToken(getPersonalRoomId(auth.username))}
-          />
+          >
+            {auth.username}'s Study Room
+          </Button>
+
+         
           <input
             type="text"
             placeholder="Enter Meeting Id"
             onChange={(e) => setInputMeetingId(e.target.value)}
           />
+
           <Stack
             spacing={2}
             direction="row"
             sx={{ width: "100%", justifyContent: "space-between" }}
           >
-            <CreateRoomButton onClick={() => getMeetingAndToken()} />
-            <JoinRoomButton onClick={() => inputMeetingId && getMeetingAndToken(inputMeetingId)} />
+        
+            <Button
+              variant="outlined"
+              startIcon={<AddCircleOutlineIcon />}
+              sx={{
+                textTransform: "none",
+                backgroundColor: "#fff",
+                color: "#374151",
+                border: "1px solid #374151",
+                width: "50%",
+              }}
+              onClick={() => getMeetingAndToken()}
+            >
+              Create Room
+            </Button>
+
+      
+            <Button
+              variant="outlined"
+              startIcon={<GroupsIcon />}
+              sx={{
+                textTransform: "none",
+                backgroundColor: "#fff",
+                color: "#374151",
+                border: "1px solid #374151",
+                width: "50%",
+              }}
+              onClick={() => inputMeetingId && getMeetingAndToken(inputMeetingId)}
+            >
+              Join Room
+            </Button>
           </Stack>
         </Stack>
       </div>
