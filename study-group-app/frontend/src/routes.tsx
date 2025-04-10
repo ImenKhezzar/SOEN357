@@ -4,11 +4,12 @@ import RequireAuth from "./components/Authentication/RequireAuth";
 import Authentication from "./pages/Authentication";
 import HomePage from "./pages/HomePage";
 import MeetingRoom from "./pages/MeetingRoom";
+import Welcome from "./pages/Welcome";
 
 const AppRoutes: React.FC = () => {
   return (
     <Routes>
-      <Route path="/" element={<Authentication />} />
+      <Route path="/" element={<Welcome />} />
       <Route path="/auth" element={<Authentication />} />
 
       {/* Add path that requires authetication to be access */}
