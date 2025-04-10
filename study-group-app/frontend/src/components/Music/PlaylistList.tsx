@@ -63,7 +63,7 @@ const PlaylistList: React.FC<PlaylistListProps> = ({ onPlayPlaylist }) => {
     return (
         <div>
             <div>
-                <h2>My Playlists</h2>
+            <span style={{fontWeight: 'bold'}}><p>Study Playlists</p></span>
                 {playlists.length === 0 ? (
                     <p>No playlists available!</p>
                 ) : (
