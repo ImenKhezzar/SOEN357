@@ -105,7 +105,7 @@ const Sidebar = () => {
           <a href="#">Settings</a>
         </li>
         <li>
-          <Logout />
+          {/* <Logout /> */}
         </li>
       </ul>
     </div>

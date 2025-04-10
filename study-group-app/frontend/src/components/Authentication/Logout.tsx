@@ -1,10 +1,13 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
-import Button from "@mui/material/Button";
 import useAuth from "../../hooks/useAuth";
-import "../../App.css";
 
-const Logout = () => {
+interface LogoutProps {
+  trigger: boolean;
+}
+
+const Logout: React.FC<LogoutProps> = ({ trigger }) => {
   const navigate = useNavigate();
   const axiosPrivate = useAxiosPrivate();
   const authContext = useAuth();
@@ -13,34 +16,26 @@ const Logout = () => {
   }
   const { setAuth } = authContext;
 
-  const handleLogout = async () => {
-    try {
-      const response = await axiosPrivate.get("/logout");
-      if (response.status === 204) {
-        setAuth(null);
-        navigate("/auth");
-      }
-    } catch (err) {
-      console.error("Failed to logout", err);
-    }
-  };
+  console.log("Logout triggered:", trigger);
+  useEffect(() => {
+    if (!trigger) return;
 
-  return (
-    <div className="logout-button">
-      <Button
-        variant="contained"
-        sx={{
-          textTransform: "none",
-          color: "#fff",
-          backgroundColor: "#9387B4",
-          border: "2px solid #9387B4",
-        }}
-        onClick={handleLogout}
-      >
-        Logout
-      </Button>
-    </div>
-  );
+    const handleLogout = async () => {
+      try {
+        const response = await axiosPrivate.get("/logout");
+        if (response.status === 204) {
+          setAuth(null);
+          navigate("/auth");
+        }
+      } catch (err) {
+        console.error("Failed to logout", err);
+      }
+    };
+
+    handleLogout();
+  }, [trigger, axiosPrivate, setAuth, navigate]);
+
+  return null;
 };
 
 export default Logout;

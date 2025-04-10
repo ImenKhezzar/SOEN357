@@ -4,6 +4,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import MusicNoteIcon from '@mui/icons-material/MusicNote';
 
 interface PlaylistProps {
     playlist: {
@@ -40,7 +41,8 @@ const Playlist: React.FC<PlaylistProps> = ({ playlist, updatePlaylist, deletePla
     };
 
     return (
-        <div className="list">
+        <div className="list" style={{ display: 'flex', alignItems: 'center', padding: '3px', borderRadius: '8px', marginBottom: '10px' }}>
+            <MusicNoteIcon style={{ marginRight: '10px', color: '#78CFEB' }} /> {/* Added music icon */}
             {isEditing ? (
                 <div style={{display: "flex", flexDirection: "column"}}>
                     <TextField
@@ -51,7 +53,7 @@ const Playlist: React.FC<PlaylistProps> = ({ playlist, updatePlaylist, deletePla
                         autoFocus
                         sx={{
                             '& .MuiInput-underline:after': {
-                                borderBottomColor: '#9387B4',
+                                borderBottomColor: '#927AF4',
                             },
                             '& .MuiInputBase-input': {
                                 fontFamily: 'Inter, sans-serif', 
@@ -67,7 +69,7 @@ const Playlist: React.FC<PlaylistProps> = ({ playlist, updatePlaylist, deletePla
                         placeholder="Link to playlist"
                         sx={{
                             '& .MuiInput-underline:after': {
-                                borderBottomColor: '#9387B4',
+                                borderBottomColor: '#927AF4',
                             },
                             '& .MuiInputBase-input': {
                                 fontFamily: 'Inter, sans-serif',

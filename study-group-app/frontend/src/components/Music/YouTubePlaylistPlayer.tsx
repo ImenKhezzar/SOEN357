@@ -155,21 +155,21 @@ const YouTubePlaylistPlayer: React.FC<YouTubePlaylistPlayerProps> = ({ playlistI
             aria-labelledby="progress-slider"
             min={0}
             max={duration}
-            style={{ width: 200, color: '#9387B4'}}
+            style={{ width: 200, color: '#927AF4'}}
           />
           <div className="control-buttons">
             <IconButton onClick={handlePrevious}>
-              <SkipPreviousIcon />
+              <SkipPreviousIcon  style={{color: 'black'}}/>
             </IconButton>
             <IconButton onClick={handlePlayPause}>
               {isPlaying ? (
-                <PauseIcon />
+                <PauseIcon style={{color: 'black'}}/>
               ) : (
-                <PlayArrowIcon />
+                <PlayArrowIcon  style={{color: 'black'}}/>
               )}
             </IconButton>
             <IconButton onClick={handleNext}>
-              <SkipNextIcon />
+              <SkipNextIcon style={{color: 'black'}}/>
             </IconButton>
           </div>
           <div className="volume-controls" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -180,7 +180,7 @@ const YouTubePlaylistPlayer: React.FC<YouTubePlaylistPlayerProps> = ({ playlistI
               aria-labelledby="volume-slider"
               min={0}
               max={100}
-              style={{ width: 150, color: '#9387B4', margin: '0 10px' }}
+              style={{ width: 150, color: '#927AF4', margin: '0 10px' }}
             />
             <VolumeUp fontSize="small" />
           </div>

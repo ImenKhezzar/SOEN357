@@ -37,6 +37,7 @@ const Task: React.FC<TaskProps> = ({ task, updateTaskName, updateTaskStatus, del
                 type="checkbox"
                 checked={task.completed}
                 onChange={() => updateTaskStatus(task.id)}
+                style={{ marginRight: '0.7em' }}
             />
             {isEditing ? (
                 <TextField
@@ -48,7 +49,7 @@ const Task: React.FC<TaskProps> = ({ task, updateTaskName, updateTaskStatus, del
                     autoFocus
                     sx={{
                         '& .MuiInput-underline:after': {
-                            borderBottomColor: '#9387B4', // Change the color of the bottom line when focused
+                            borderBottomColor: '#927AF4', // Change the color of the bottom line when focused
                         },
                         '& .MuiInputBase-input': {
                             fontFamily: 'Inter, sans-serif', // Change the text color
@@ -57,7 +58,10 @@ const Task: React.FC<TaskProps> = ({ task, updateTaskName, updateTaskStatus, del
                 />
             ) : (
                 <span
-                    style={{ textDecoration: task.completed ? 'line-through' : 'none' }}
+                    style={{
+                        textDecoration: task.completed ? 'line-through' : 'none',
+                        color: task.completed ? 'lightgrey' : 'inherit', // Set text color to light grey if completed
+                    }}
                     onDoubleClick={() => setIsEditing(true)}
                 >
                     {task.name}

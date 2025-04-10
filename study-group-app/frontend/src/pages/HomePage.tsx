@@ -19,7 +19,7 @@ const HomePage = () => {
         <div>
             <Header />
             <div className="homepage-container">
-                <Logout />
+                {/* <Logout /> */}
                 <StartStudying />
                 <div className="todo-list-container">
                     <div className="white-box" style={{ width: '100%', maxHeight: '30vw', margin: 'auto' }}> 
