@@ -107,8 +107,14 @@ function ResponsiveAppBar() {
               {pages.map((page) => (
                 <Button
                   key={page}
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, display: 'block', color: 'inherit'  }}
+                  onClick={() => {
+                    if (page === 'Dashboard') {
+                      navigate('/homepage'); // Navigate to /homepage when Dashboard is clicked
+                    } else {
+                      handleCloseNavMenu();
+                    }
+                  }}
+                  sx={{ my: 2, display: 'block', color: 'inherit' }}
                 >
                   {page}
                 </Button>
