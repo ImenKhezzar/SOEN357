@@ -48,19 +48,22 @@ const Welcome = () => {
               <Button color="inherit">Rooms</Button>
               <Button color="inherit">About</Button>
               <Button variant="contained" sx={{ backgroundColor: "#927AF4" }}>
-                Get Started
+                Sign Up
               </Button>
             </Box>
           </Toolbar>
         </AppBar>
       </div>
 
+      {/* FRIST BLOCK */}
       <div
         className="first-block"
         style={{
           background: "linear-gradient(90deg, #F7EEFF 0%, #F3F9FF 100%)",
           width: "100vw",
           height: "383px",
+          display: "flex",
+          justifyContent: "center",
         }}
       >
         <Stack className="content" direction="column" spacing={7}>
@@ -85,6 +88,8 @@ const Welcome = () => {
           </Stack>
         </Stack>
       </div>
+
+      {/* SECOND BLOCK */}
       <div
         className="second-block"
         style={{
@@ -97,11 +102,14 @@ const Welcome = () => {
       >
         <Box
           sx={{
+            marginTop: "60px",
             width: "100%",
-            display: "grid",
+            height: "200px",
+            display: "flex",
             gridTemplateColumns:
               "repeat(auto-fill, minmax(min(300px, 100%), 1fr))",
             gap: 2,
+            justifyContent: "center",
           }}
         >
           {cards.map((card, index) => (
@@ -119,52 +127,74 @@ const Welcome = () => {
         </Box>
       </div>
 
+      {/* THIRD BLOCK */}
       <div
         className="third-block"
-        style={{ height: "400px", backgroundColor: "#F9FAFB", width: "100vw" }}
+        style={{
+          height: "400px",
+          backgroundColor: "#F9FAFB",
+          width: "100vw",
+        }}
       >
-        <h2> Experience Focused Study Sessions </h2>
-        <h4>
-          {" "}
-          Join or create study rooms with built-in features designed to enhance{" "}
-          <br /> your study experience.
-        </h4>
-        <div className="check-list" style={{ width: "30vw", margin: "0 auto" }}>
-          <ul
-            style={{ listStyleType: "none", paddingLeft: "0", width: "100vw" }}
+        <Stack className="content" direction="column" spacing={7}>
+          <Stack
+            className="block2-text"
+            direction="column"
+            spacing={1}
+            alignItems="center"
           >
-            <li
+            <h2>Experience Focused Study Sessions</h2>
+            <h4 style={{ textAlign: "center" }}>
+              Join or create study rooms with built-in features designed to
+              enhance <br />
+              your study experience.
+            </h4>
+          </Stack>
+
+          <div
+            className="check-list"
+            style={{ width: "30vw", margin: "0 auto" }}
+          >
+            <ul
               style={{
-                display: "flex",
-                alignItems: "center",
-                paddingLeft: "25px",
+                listStyleType: "none",
+                paddingLeft: "0",
+                width: "100%",
               }}
             >
-              <span style={{ marginRight: "10px" }}>✓</span>
-              Collaborative study environment
-            </li>
-            <li
-              style={{
-                display: "flex",
-                alignItems: "center",
-                paddingLeft: "25px",
-              }}
-            >
-              <span style={{ marginRight: "10px" }}>✓</span>
-              Integrated YouTube player for educational content
-            </li>
-            <li
-              style={{
-                display: "flex",
-                alignItems: "center",
-                paddingLeft: "25px",
-              }}
-            >
-              <span style={{ marginRight: "10px" }}>✓</span>
-              Customizable study music playlists
-            </li>
-          </ul>
-        </div>
+              <li
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  paddingLeft: "25px",
+                }}
+              >
+                <span style={{ marginRight: "10px" }}>✓</span>
+                Collaborative study environment
+              </li>
+              <li
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  paddingLeft: "25px",
+                }}
+              >
+                <span style={{ marginRight: "10px" }}>✓</span>
+                Integrated YouTube player for educational content
+              </li>
+              <li
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  paddingLeft: "25px",
+                }}
+              >
+                <span style={{ marginRight: "10px" }}>✓</span>
+                Customizable study music playlists
+              </li>
+            </ul>
+          </div>
+        </Stack>
       </div>
     </div>
   );

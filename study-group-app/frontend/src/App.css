@@ -1,7 +1,6 @@
 #root {
   margin: 0;
   padding: 0;
-
 }
 
 body {
@@ -20,7 +19,7 @@ body {
 }
 
 .purple-box {
-  background-color: #FCF9FF;
+  background-color: #fcf9ff;
   padding: 10px;
   border-radius: 10px;
   justify-content: center;
@@ -127,7 +126,7 @@ button.submit-button {
 }
 
 button.add-list-button {
-  color: #927AF4;
+  color: #927af4;
   text-transform: none;
   font-size: 0.8em;
 }
