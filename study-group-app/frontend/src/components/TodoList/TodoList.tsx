@@ -76,9 +76,7 @@ const TodoList: React.FC = () => {
 
     return (
         <div>
-                <div className="add-task-container">
-                </div>
-                {tasks.length === 0 ? (
+            {tasks.length === 0 ? (
                     <p>All your tasks are completed!</p>
                 ) : (
                     tasks.map(task => (
