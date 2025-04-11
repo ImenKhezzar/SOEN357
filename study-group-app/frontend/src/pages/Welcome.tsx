@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import AppBar from "@mui/material/AppBar";
@@ -7,14 +8,25 @@ import Box from "@mui/material/Box";
 import myLogo from "../assets/image.png";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import { Container, Link } from "@mui/material";
+import { Container, Link, Modal } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import { AccountCircle, Checklist, MusicNote } from "@mui/icons-material";
+import Auth from "../components/Authentication/Auth";
 
 const Welcome = () => {
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+
+  const handleOpenAuthModal = () => {
+    setIsAuthModalOpen(true);
+  };
+
+  const handleCloseAuthModal = () => {
+    setIsAuthModalOpen(false);
+  };
+
   const cards = [
     {
       id: 1,
@@ -70,9 +82,33 @@ const Welcome = () => {
   ];
 
   return (
-    <div style={{ height: "100vh", width: "100vw" }}>
+    <div style={{ height: "100vh", width: "100vw", position: "relative" }}>
+      {/* Modal for Auth */}
+      <Modal
+        open={isAuthModalOpen}
+        onClose={handleCloseAuthModal}
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          backdropFilter: "blur",
+        }}
+      >
+        <Box
+          sx={{
+            borderRadius: "16px",
+            boxShadow: 24,
+            width: "50vw",  
+ 
+          }}
+        >
+          <Auth />
+        </Box>
+      </Modal>
+
+      {/* Header */}
       <div className="header" style={{ width: "100vw" }}>
-        <AppBar position="static" color="default" elevation={0}>
+        <AppBar position="static" color="transparent" elevation={0} sx={{ backgroundColor: "white" }}>
           <Toolbar>
             <Typography variant="h6" sx={{ flexGrow: 1 }}>
               <img
@@ -86,8 +122,12 @@ const Welcome = () => {
               <Button color="inherit">Features</Button>
               <Button color="inherit">Rooms</Button>
               <Button color="inherit">About</Button>
-              <Button variant="contained" sx={{ backgroundColor: "#927AF4" }}>
-                Sign Up
+              <Button
+                variant="contained"
+                sx={{ backgroundColor: "#927AF4" }}
+                onClick={handleOpenAuthModal} // Open the Auth modal
+              >
+                Sign In
               </Button>
             </Box>
           </Toolbar>
