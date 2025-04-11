@@ -1,7 +1,6 @@
 import { useParticipant } from "@videosdk.live/react-sdk";
 import { useEffect, useRef } from "react";
 
-
 const ParticipantView = ({ participantId }: { participantId: string }) => {
   const {
     displayName,
@@ -18,21 +17,21 @@ const ParticipantView = ({ participantId }: { participantId: string }) => {
   const screenShareRef = useRef<HTMLVideoElement | null>(null);
   const micRef = useRef<HTMLAudioElement | null>(null);
 
+  // Audio
   useEffect(() => {
     if (micRef.current) {
       if (micOn && micStream) {
         const mediaStream = new MediaStream();
         mediaStream.addTrack(micStream.track);
         micRef.current.srcObject = mediaStream;
-        micRef.current.play().catch((error) => {
-          console.error("micRef.current.play() failed", error);
-        });
+        micRef.current.play().catch(console.error);
       } else {
         micRef.current.srcObject = null;
       }
     }
   }, [micOn, micStream]);
 
+  // Webcam
   useEffect(() => {
     if (videoRef.current) {
       if (webcamOn && webcamStream) {
@@ -46,6 +45,7 @@ const ParticipantView = ({ participantId }: { participantId: string }) => {
     }
   }, [webcamOn, webcamStream]);
 
+  // Screen share
   useEffect(() => {
     if (screenShareRef.current) {
       if (screenShareOn && screenShareStream) {
@@ -59,17 +59,23 @@ const ParticipantView = ({ participantId }: { participantId: string }) => {
   }, [screenShareOn, screenShareStream]);
 
   return (
-    <div
-      className="participant-wrapper"
-      style={{ position: "relative", width: "100%", height: "100%" }}
-    >
+    <>
+      <audio ref={micRef} autoPlay muted={isLocal} />
+
       {screenShareOn && (
         <div
           className="screen-share-container"
-          style={{ width: "80%", height: "80%" }}
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "70vw",
+            height: "80vh",
+
+            zIndex: 1,
+          }}
         >
           <video
-            className="screen-share-video"
             ref={screenShareRef}
             autoPlay
             playsInline
@@ -78,24 +84,26 @@ const ParticipantView = ({ participantId }: { participantId: string }) => {
         </div>
       )}
 
-      {webcamOn && (
-        <div
-          className="webcam-video-container"
-          style={{
-            position: "absolute",
-            bottom: "20px",
-            right: "20px",
-            width: "200px",
-            height: "150px",
-            backgroundColor: "#000",
-            borderRadius: "8px",
+      <div
+        className="participant-box"
+        style={{
+          position: "relative",
+          top: "12px",
+          left: "70vw",
+          width: "200px",
+          height: "150px",
+          borderRadius: "12px",
+          backgroundColor: "#000",
+          overflow: "hidden",
+          zIndex: 2,
 
-            overflow: "hidden",
-            zIndex: 10,
-          }}
-        >
-          <audio ref={micRef} autoPlay muted={isLocal} />
-
+          justifyContent: "center",
+          alignItems: "center",
+          display: "flex",
+          flexDirection: "row",
+        }}
+      >
+        {webcamOn ? (
           <video
             ref={videoRef}
             autoPlay
@@ -104,19 +112,16 @@ const ParticipantView = ({ participantId }: { participantId: string }) => {
               width: "100%",
               height: "100%",
               objectFit: "cover",
-              transform: " scaleX(-1)",
-              top:"20px",
+              transform: "scaleX(-1)",
             }}
           />
-        </div>
-      )}
-
-      {!webcamOn && !screenShareOn && (
-        <div className="participant-placeholder">
-          <p>{displayName}</p>
-        </div>
-      )}
-    </div>
+        ) : (
+          <p style={{ color: "white", fontSize: "18px", fontWeight: "bold" }}>
+            {displayName}
+          </p>
+        )}
+      </div>
+    </>
   );
 };
 
