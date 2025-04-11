@@ -1,6 +1,5 @@
 import "../App.css";
 import { useState } from "react";
-import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import PersonIcon from "@mui/icons-material/Person";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
@@ -9,7 +8,6 @@ import { authToken, createMeeting } from "../API";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import Header from "./Header";
-import Logout from '../components/Authentication/Logout';
 
 const Sidebar = () => {
   const [meetingId, setMeetingId] = useState<string | null>(null);

@@ -12,7 +12,8 @@ import { Link, Modal, IconButton } from "@mui/material";
 import { FaFacebook, FaTwitter, FaInstagram, FaUserCircle, FaListAlt, FaMusic } from "react-icons/fa"; // Replaced icons
 import { Container, Row, Col } from 'react-bootstrap'; // Replaced Grid2 with react-bootstrap
 import Auth from "../components/Authentication/Auth";
-
+import Footer from "../components/UI/Footer"; 
+import Header from "../components/UI/Header";
 const Welcome = () => {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
 
@@ -50,55 +51,7 @@ const Welcome = () => {
 
   return (
     <div style={{ height: "100vh", width: "100vw", position: "relative" }}>
-      {/* Modal for Auth */}
-      <Modal
-        open={isAuthModalOpen}
-        onClose={handleCloseAuthModal}
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          backdropFilter: "blur",
-        }}
-      >
-        <Box
-          sx={{
-            borderRadius: "16px",
-            boxShadow: 24,
-            width: "50vw",
-          }}
-        >
-          <Auth />
-        </Box>
-      </Modal>
-
-      {/* Header */}
-      <div className="header" style={{ width: "100vw" }}>
-        <AppBar position="static" color="transparent" elevation={0} sx={{ backgroundColor: "white" }}>
-          <Toolbar>
-            <Typography variant="h6" sx={{ flexGrow: 1 }}>
-              <img
-                src={myLogo}
-                alt="Logo"
-                className="logo"
-                style={{ height: "40px" }}
-              />
-            </Typography>
-            <Box sx={{ display: "flex", gap: "12px" }}>
-              <Button color="inherit">Features</Button>
-              <Button color="inherit">Rooms</Button>
-              <Button color="inherit">About</Button>
-              <Button
-                variant="contained"
-                sx={{ backgroundColor: "#927AF4" }}
-                onClick={handleOpenAuthModal} // Open the Auth modal
-              >
-                Sign In
-              </Button>
-            </Box>
-          </Toolbar>
-        </AppBar>
-      </div>
+      <Header/>
 
       {/* FRIST BLOCK */}
       <div
@@ -305,116 +258,7 @@ const Welcome = () => {
           </Button>
         </Stack>
       </div>
-
-       {/* FOOTER */}
-<div 
-  className="footer" 
-  style={{ 
-    backgroundColor: "#111827",
-    padding: "60px",
-    width: "100vw"
-  }}
->
-  <Container>
-    {/* Main Footer Content */}
-    <div style={{
-      display: "grid",
-      gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-      gap: "40px",
-      marginBottom: "40px"
-    }}>
-      {/* Product Column */}
-      <div>
-        <Typography variant="h6" gutterBottom style={{ color: "white", fontWeight: 600 }}>
-          Product
-        </Typography>
-        <Stack spacing={1}>
-          {['Features', 'Pricing', 'Updates'].map((item) => (
-            <Link 
-              key={item}
-              href="#" 
-              color="inherit" 
-              underline="none"
-              sx={{ color: "#9CA3AF", '&:hover': { color: "white" } }}
-            >
-              {item}
-            </Link>
-          ))}
-        </Stack>
-      </div>
-
-      {/* Company Column */}
-      <div>
-        <Typography variant="h6" gutterBottom style={{ color: "white", fontWeight: 600 }}>
-          Company
-        </Typography>
-        <Stack spacing={1}>
-          {['About Us', 'Careers', 'Blog'].map((item) => (
-            <Link 
-              key={item}
-              href="#" 
-              color="inherit" 
-              underline="none"
-              sx={{ color: "#9CA3AF", '&:hover': { color: "white" } }}
-            >
-              {item}
-            </Link>
-          ))}
-        </Stack>
-      </div>
-
-      {/* Support Column */}
-      <div>
-        <Typography variant="h6" gutterBottom style={{ color: "white", fontWeight: 600 }}>
-          Support
-        </Typography>
-        <Stack spacing={1}>
-          {['Help Center', 'Contact Us', 'Terms'].map((item) => (
-            <Link 
-              key={item}
-              href="#" 
-              color="inherit" 
-              underline="none"
-              sx={{ color: "#9CA3AF", '&:hover': { color: "white" } }}
-            >
-              {item}
-            </Link>
-          ))}
-        </Stack>
-      </div>
-
-      {/* Connect Column */}
-      <div>
-        <Typography variant="h6" gutterBottom style={{ color: "white", fontWeight: 600 }}>
-          Connect
-        </Typography>
-        <Stack direction="row" spacing={2}>
-          <IconButton 
-            href="https://facebook.com" 
-            target="_blank"
-            sx={{ color: "#9CA3AF", '&:hover': { color: "#3b5998" } }}
-          >
-            <FaFacebook />
-          </IconButton>
-          <IconButton 
-            href="https://twitter.com" 
-            target="_blank"
-            sx={{ color: "#9CA3AF", '&:hover': { color: "#1da1f2" } }}
-          >
-            <FaTwitter />
-          </IconButton>
-          <IconButton 
-            href="https://instagram.com" 
-            target="_blank"
-            sx={{ color: "#9CA3AF", '&:hover': { color: "#e1306c" } }}
-          >
-            <FaInstagram />
-          </IconButton>
-        </Stack>
-      </div>
-    </div>
-  </Container>
-</div>
+      <Footer/>
       </div>
   );
 };
