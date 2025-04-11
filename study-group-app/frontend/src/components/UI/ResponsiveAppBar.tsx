@@ -51,7 +51,7 @@ function ResponsiveAppBar() {
       const response = await axiosPrivate.get("/logout");
       if (response.status === 204) {
         setAuth(null);
-        navigate("/auth");
+        navigate("/");
       }
     } catch (err) {
       console.error("Failed to logout", err);
