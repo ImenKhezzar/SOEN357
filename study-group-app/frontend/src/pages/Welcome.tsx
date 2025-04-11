@@ -108,7 +108,7 @@ const Welcome = () => {
 
       {/* Header */}
       <div className="header" style={{ width: "100vw" }}>
-        <AppBar position="static" color="default" elevation={0}>
+        <AppBar position="static" color="transparent" elevation={0} sx={{ backgroundColor: "white" }}>
           <Toolbar>
             <Typography variant="h6" sx={{ flexGrow: 1 }}>
               <img
