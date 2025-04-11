@@ -10,6 +10,7 @@ import useAxiosPrivate from '../hooks/useAxiosPrivate';;
 import TodoList from '../components/TodoList/TodoList'; // Adjust the path as needed
 import PlaylistList from '../components/Music/PlaylistList'; // Adjust the path as needed
 import MusicPlayer from '../components/Music/MusicPlayer'; // Adjust the path as needed
+import StartStudying from '../components/StartStudying';
 
 const HomePage = () => {
     const [meetingId, setMeetingId] = useState<string | null>(null);
@@ -22,16 +23,17 @@ const HomePage = () => {
     if (!authContext) {
       throw new Error("useAuth must be used within an AuthProvider");
     }
-    const {auth } = authContext;
+    const { auth } = authContext;
 
     const handlePlayPlaylist = (link: string) => {
         setCurrentPlaylistLink(link);
     };
     
 
-    const getPersonalRoomId = (username: string) => {
-        return btoa(username).replace(/=/g, '');
-    };
+  // 🔹 Generate a unique & reusable meeting ID for each user
+  const getPersonalRoomId = (username: string) => {
+    return btoa(username).replace(/=/g, ""); // Base64 encode (removes '=' for cleaner ID)
+  };
 
     const getMeetingAndToken = async (id?: string) => {
         if (meetingId) {
@@ -54,8 +56,9 @@ const HomePage = () => {
 
         <div style={{display: 'flex', justifyContent: 'space-between', marginLeft: '4vw', marginTop: '2em'}}>
 
-        <div style={{ flex: '1', marginRight: '2vw' }}>
-            <div className='purple-box' style={{ width: '25vw', marginBottom: '1em', padding: '2vw'}}>
+        <div style={{ flex: '1', marginRight: '2vw', width: '29vw'}}>
+            <StartStudying />
+            {/* <div className='purple-box' style={{ width: '25vw', marginBottom: '1em', padding: '2vw'}}>
             <div style={{ marginBottom: '1em',  }}>
             <span style={{marginRight: '4em'}}><b> Personal Room </b></span>
             <PersonalRoomButton
@@ -85,7 +88,7 @@ const HomePage = () => {
             
             <JoinRoomButton onClick={() => inputMeetingId && getMeetingAndToken(inputMeetingId)} />
             </div>
-            </div>
+            </div> */}
         </div>
 
         <div style={{ flex: '1', marginRight: '2vw' }}>
