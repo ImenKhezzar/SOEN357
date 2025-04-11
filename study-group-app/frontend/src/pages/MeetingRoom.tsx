@@ -31,6 +31,8 @@ import Timer from "../components/Timer/Timer";
 import { useMeeting } from "@videosdk.live/react-sdk";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy"; // Import copy icon
 import Tooltip from "@mui/material/Tooltip"; // Import Tooltip
+import { Select, MenuItem } from '@mui/material';
+import Typography from '@mui/material/Typography';
 
 const drawerWidth = 240;
 
@@ -163,94 +165,156 @@ const MeetingRoom = () => {
         <MenuIcon />
       </IconButton>
       <Drawer
-        variant="persistent"
-        open={open}
-        onClose={handleDrawerClose}
+  variant="persistent"
+  open={open}
+  onClose={handleDrawerClose}
+  sx={{
+    width: drawerWidth,
+    flexShrink: 0,
+    [`& .MuiDrawer-paper`]: {
+      width: drawerWidth,
+      boxSizing: "border-box",
+      height: "auto",
+      backgroundColor: "#f8f9fa", // Light gray background
+      borderRight: "1px solid #e0e0e0", // Subtle border
+    },
+  }}
+>
+  {/* Drawer Header */}
+  <DrawerHeader sx={{ 
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: "5px",
+    backgroundColor: "#ffffff", 
+    borderBottom: "1px solid #e0e0e0" 
+  }}>
+    <div style={{ 
+      display: "flex", 
+      alignItems: "center", 
+      gap: "8px",
+      backgroundColor: "#f3f9ff",
+      padding: "8px 12px",
+      borderRadius: "8px"
+    }}>
+      <Typography variant="subtitle2" sx={{ fontWeight: 500 }}>
+        Meeting ID: {roomId}
+      </Typography>
+      <Tooltip title="Copy Meeting ID">
+        <IconButton 
+          onClick={handleCopyRoomId} 
+          size="small"
+          sx={{ 
+            color: "#927af4",
+            '&:hover': { backgroundColor: "rgba(0, 0, 0, 0.04)" }
+          }}
+        >
+          <ContentCopyIcon fontSize="small" />
+        </IconButton>
+      </Tooltip>
+    </div>
+    <IconButton 
+      onClick={handleDrawerClose}
+      sx={{
+        color: "text.secondary",
+        '&:hover': { backgroundColor: "rgba(0, 0, 0, 0.04)" }
+      }}
+    >
+      <ChevronLeftIcon />
+    </IconButton>
+  </DrawerHeader>
+
+  {/* Menu Items */}
+  <List sx={{ padding: "8px", backgroundColor: "#f3f9ff" }}>
+    {/* Timer */}
+    <ListItem 
+      button 
+      onClick={handleTimerOpen}
+      sx={{
+        borderRadius: "8px",
+        margin: "4px 0",
+        '&:hover': { backgroundColor: "rgba(0, 0, 0, 0.04)" }
+      }}
+    >
+      <ListItemIcon sx={{ minWidth: "40px" }}>
+        <TimerIcon style={{ color:'#927af4'}}/>
+      </ListItemIcon>
+      <ListItemText 
+        primary="Timer" 
+        primaryTypographyProps={{ fontWeight: 500 }}
+      />
+    </ListItem>
+    <Divider sx={{ my: 1 }} />
+
+    {/* To-do List */}
+    <ListItem 
+      button 
+      onClick={handleTodoOpen}
+      sx={{
+        borderRadius: "8px",
+        margin: "4px 0",
+        '&:hover': { backgroundColor: "rgba(0, 0, 0, 0.04)" }
+      }}
+    >
+      <ListItemIcon sx={{ minWidth: "40px" }}>
+        <ListIcon style={{ color:'#927af4'}} />
+      </ListItemIcon>
+      <ListItemText 
+        primary="To-do List" 
+        primaryTypographyProps={{ fontWeight: 500 }}
+      />
+    </ListItem>
+    <Divider sx={{ my: 1 }} />
+
+    {/* Music */}
+    <ListItem 
+      button 
+      onClick={handleMusicOpen}
+      sx={{
+        borderRadius: "8px",
+        margin: "4px 0",
+        '&:hover': { backgroundColor: "rgba(0, 0, 0, 0.04)" }
+      }}
+    >
+      <ListItemIcon sx={{ minWidth: "40px" }}>
+        <MusicNoteIcon style={{ color:'#927af4'}} />
+      </ListItemIcon>
+      <ListItemText 
+        primary="Music" 
+        primaryTypographyProps={{ fontWeight: 500 }}
+      />
+    </ListItem>
+    <Divider sx={{ my: 1 }} />
+
+    {/* Background Selector */}
+    <ListItem sx={{ padding: "8px 16px" }}>
+      <ListItemIcon sx={{ minWidth: "40px" }}>
+        <WallpaperIcon style={{ color:'#927af4'}} />
+      </ListItemIcon>
+      <Select
+        value={background}
+        onChange={(e) => setBackground(e.target.value)}
+        size="small"
+        fullWidth
         sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          [`& .MuiDrawer-paper`]: {
-            width: drawerWidth,
-            boxSizing: "border-box",
-            height: "auto",
+          borderRadius: "8px",
+          '& .MuiOutlinedInput-notchedOutline': {
+            borderColor: "divider"
           },
+          '&:hover .MuiOutlinedInput-notchedOutline': {
+            borderColor: "primary.main"
+          }
         }}
       >
-        <DrawerHeader>
-          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-            <span>
-              Meeting ID: <br /> {roomId}
-            </span>
-            <Tooltip title="Copy Meeting ID">
-              <IconButton onClick={handleCopyRoomId} size="small">
-                <ContentCopyIcon fontSize="small" />
-              </IconButton>
-            </Tooltip>
-          </div>
-          <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon />
-          </IconButton>
-        </DrawerHeader>
-        <Divider />
-        <List>
-          <ListItem button onClick={handleTimerOpen}>
-            <ListItemIcon>
-              <TimerIcon />
-            </ListItemIcon>
-            <ListItemText primary="Timer" />
-          </ListItem>
-          <Divider />
-          <ListItem button onClick={handleTodoOpen}>
-            <ListItemIcon>
-              <ListIcon />
-            </ListItemIcon>
-            <ListItemText primary="To-do List" />
-          </ListItem>
-          <Divider />
-          <ListItem button onClick={handleMusicOpen}>
-            <ListItemIcon>
-              <MusicNoteIcon />
-            </ListItemIcon>
-            <ListItemText primary="Music" />
-          </ListItem>
-          <Divider />
-          <ListItem>
-            <ListItemIcon>
-              <WallpaperIcon />
-            </ListItemIcon>
-
-            <div>
-              <select
-                onChange={(e) => setBackground(e.target.value)}
-                value={background}
-                style={{
-                  padding: "0",
-                  fontSize: "15px",
-                  width: "150px",
-                  borderRadius: "8px",
-                  background: "rgba(255, 255, 255, 0.8)",
-                  border: "none",
-                  color: "rgb(0,0,0)",
-                }}
-              >
-                {backgrounds.map((bg) => (
-                  <option key={bg.name} value={bg.url}>
-                    {bg.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </ListItem>
-          <Divider />
-          {/* <ListItem button onClick={handleWhiteBoardOpen}>
-            <ListItemIcon>
-              <WhiteBoard />
-            </ListItemIcon>
-            <ListItemText primary="Whiteboard" />
-          </ListItem> */}
-          <Divider />
-        </List>
-      </Drawer>
+        {backgrounds.map((bg) => (
+          <MenuItem key={bg.name} value={bg.url}>
+            <Typography variant="body2">{bg.name}</Typography>
+          </MenuItem>
+        ))}
+      </Select>
+    </ListItem>
+  </List>
+</Drawer>
 
       <div style={{ marginTop: "1%" }}>
         <MeetingProvider
