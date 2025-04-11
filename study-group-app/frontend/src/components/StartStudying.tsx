@@ -86,7 +86,7 @@ function StartStudying() {
             type="text"
             placeholder="Enter Meeting Id"
             onChange={(e) => setInputMeetingId(e.target.value)}
-          /> <br/>
+          /> <br/> <br/>
 
             <Button
               variant="outlined"

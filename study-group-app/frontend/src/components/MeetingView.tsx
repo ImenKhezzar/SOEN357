@@ -40,7 +40,7 @@ const MeetingView = () => {
   return (
     <div className="meeting-room">
       <Draggable>
-      <div
+        <div
           style={{
             display: "grid",
             gridAutoFlow: "column", // fill top to bottom, then new column

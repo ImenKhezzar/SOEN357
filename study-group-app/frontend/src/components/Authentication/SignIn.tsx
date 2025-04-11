@@ -65,7 +65,7 @@ const SignIn = () => {
                     />
                 </div>
                 {error && <p className="error">{error}</p>}
-                <Button type="submit" variant="contained" className='submit-button' style={{marginTop: '5px'}}>
+                <Button type="submit" variant="contained" className='submit-button' style={{marginTop: '5px', backgroundColor: '#78CFEB'}}>
                     Sign In
                 </Button>
             </form>

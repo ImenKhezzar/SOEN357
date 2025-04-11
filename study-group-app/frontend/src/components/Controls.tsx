@@ -40,7 +40,7 @@ const Controls: React.FC<ControlsProps> = ({
   console.log(meeting);
 
   return (
-    <Stack direction="row" spacing={2} sx={{ marginTop: "10px" }}>
+    <Stack direction="row" spacing={2} sx={{ marginTop: "10px" , backgroundColor:"#FFFFFF", borderRadius:"50px"}}>
       <IconButton variant="contained" onClick={() => toggleMic()}>
         {localMicOn ? <MicIcon /> : <MicOffIcon />}
       </IconButton>
