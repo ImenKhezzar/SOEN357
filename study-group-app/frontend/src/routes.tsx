@@ -4,6 +4,7 @@ import RequireAuth from "./components/Authentication/RequireAuth";
 import Authentication from "./pages/Authentication";
 import HomePage from "./pages/HomePage";
 import MeetingRoom from "./pages/MeetingRoom";
+import Welcome from "./pages/Welcome";
 
 
 const AppRoutes: React.FC = () => {
