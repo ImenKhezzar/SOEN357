@@ -37,11 +37,11 @@ const Welcome = () => {
       title: "Smart To-do List",
       description:
         "Keep track of your tasks and study goals with our intuitive todo list.",
-      icon: <FaListAlt style={{ fontSize: "30px", color: "#059669" }} />,
+      icon: <FaListAlt style={{ fontSize: "30px", color: "#)EAA42" }} />,
     },
     {
       id: 3,
-      title: "Study Room",
+      title: "Music",
       description:
         "Access curated playlist and YouTube player for better concentration.",
       icon: <FaMusic style={{ fontSize: "30px", color: "#7C3AED" }} />,
@@ -412,17 +412,6 @@ const Welcome = () => {
           </IconButton>
         </Stack>
       </div>
-    </div>
-
-    {/* Copyright Section */}
-    <div style={{ 
-      borderTop: "1px solid #374151",
-      paddingTop: "30px",
-      textAlign: "center"
-    }}>
-      <Typography variant="body2" style={{ color: "#9CA3AF" }}>
-        © {new Date().getFullYear()} StudyRoom. All rights reserved.
-      </Typography>
     </div>
   </Container>
 </div>
