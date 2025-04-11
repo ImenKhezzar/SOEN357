@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
-import dancingImg from '../../assets/dancing.png';
+import dancingImg from '../../assets/Dancing.png';
 import Button from '@mui/material/Button';
 
 const Auth = () => {
