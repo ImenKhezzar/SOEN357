@@ -165,7 +165,7 @@ button.add-list-button {
   font-size: 30px;
   border-radius: 8px;
   position: absolute;
-  top: -800px;
+  top: 50px;
   right: 20px;
   z-index: 10;
   display: flex;
