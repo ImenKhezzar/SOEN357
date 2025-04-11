@@ -10,7 +10,7 @@ import Welcome from "./pages/Welcome";
 const AppRoutes: React.FC = () => {
   return (
     <Routes>
-      <Route path="/" element={<Authentication />} />
+      <Route path="/" element={<Welcome />} />
       
       {/* Add path that requires authetication to be access */}
       <Route element={<RequireAuth />}>
