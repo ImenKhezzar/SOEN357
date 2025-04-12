@@ -1,5 +1,8 @@
 # SOEN357
-Group Project
+Group Project: 
+
+Christelle Charles 40249246
+Imen Khezzar 40246836
 
 Deployed Version : https://soen357.onrender.com/
 
