@@ -1,24 +1,39 @@
-# SOEN357
-Group Project: 
+# SOEN357  
+## Group Project  
 
-Christelle Charles 40249246
-Imen Khezzar 40246836
+**Contributors:**  
+- Christelle Charles (40249246)  
+- Imen Khezzar (40246836)  
 
-Deployed Version : https://soen357.onrender.com/
+**🔗 Deployed Version:**  
+[https://soen357.onrender.com/](https://soen357.onrender.com/)
 
-To run the project locally
+---
 
- cd .\study-group-app\
+## 🚀 How to Run the Project Locally
 
- -- To run the frontend
- 
- cd ./frontend 
- npm install 
- npm run dev
+### 1. Clone the repository and navigate to the project root:
 
- --To run the backend
+```bash
+cd ./study-group-app
+```
+2. Run the Frontend
+```bash
+Copier le code
+cd ./frontend
+npm install
+npm start
+```
+3. Run the Backend
+```bash
+Copier le code
+cd ./backend
+npm install
+npm start
+```
 
- cd./backend
- npm install
- npm run 
+### 📝 Notes
+1. Ensure both frontend and backend servers are running simultaneously.
+2. The deployed version may take up to 2 minutes to spin up due to Render's free tier.
+
 
